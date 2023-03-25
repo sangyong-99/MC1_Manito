@@ -9,8 +9,15 @@ import SwiftUI
 
 struct ND: View {
     var body: some View {
-        Text("ND, World!")
-    }
+            VStack {
+    //            Image(systemName: "globe")
+    //                .imageScale(.large)
+    //                .foregroundColor(.accentColor)
+    //            Text("다음 버튼")
+                Stopmotion()
+    //            loki1()
+            }
+        }
 }
 
 struct ND_Previews: PreviewProvider {
