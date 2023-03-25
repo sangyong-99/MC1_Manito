@@ -20,10 +20,10 @@ struct Stopmotion: View {
     var body: some View {
         ZStack{
             if bb {
-                Image("left").resizable().scaledToFill()
+                Image("1").resizable().scaledToFill()
             }
             else {
-                Image("right").resizable().scaledToFill()
+                Image("2").resizable().scaledToFill()
             }
             
         }.onReceive(timer, perform: {value in
