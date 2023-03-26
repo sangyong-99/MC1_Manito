@@ -8,3 +8,10 @@ struct MyApp: App {
         }
     }
 }
+
+struct MyApp_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .previewInterfaceOrientation(.landscapeLeft)
+    }
+}

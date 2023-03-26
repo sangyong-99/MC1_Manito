@@ -11,7 +11,7 @@ struct Loki: View {
     @State var sceneNumber = 1
     
     var body: some View {
-        var btn = Button("Next"){
+        let btn = Button("Next"){
             sceneNumber += 1
         }.buttonStyle(.borderedProminent)
         
