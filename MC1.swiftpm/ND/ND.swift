@@ -6,19 +6,35 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ND: View {
+    @State var n_sceneNumber = 1
+
     var body: some View {
-            VStack {
-    //            Image(systemName: "globe")
-    //                .imageScale(.large)
-    //                .foregroundColor(.accentColor)
-    //            Text("다음 버튼")
-                Stopmotion()
-    //            loki1()
+        
+        let timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true){timer in
+            n_sceneNumber += 1
+            print(n_sceneNumber)
+            if n_sceneNumber == 2 {
+                timer.invalidate()
             }
         }
+        VStack {
+            if n_sceneNumber == 1 {
+                ND1()
+            }
+            else if n_sceneNumber == 2{
+                ND2()
+            }
+            else if n_sceneNumber == 3{
+                ND3()
+            }
+        }
+    }
 }
+
+
 
 struct ND_Previews: PreviewProvider {
     static var previews: some View {

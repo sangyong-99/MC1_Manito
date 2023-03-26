@@ -16,7 +16,8 @@ let package = Package(
         .iOSApplication(
             name: "MC1",
             targets: ["AppModule"],
-            bundleIdentifier: "LJH.MC1",
+            bundleIdentifier: "com.MC1",
+            teamIdentifier: "C3U3CZ666D",
             displayVersion: "1.0",
             bundleVersion: "1",
             appIcon: .placeholder(icon: .earth),

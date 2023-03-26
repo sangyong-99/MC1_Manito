@@ -1,5 +1,5 @@
 //
-//  Stopmotion.swift
+//  ND1.swift
 //  MC1_Manito
 //
 //  Created by 신상용 on 2023/03/24.
@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 
-struct Stopmotion: View {
+struct ND1: View {
     
     let timer = Timer.publish(every: 0.35, on: .main, in: .common).autoconnect()
     
@@ -32,5 +32,10 @@ struct Stopmotion: View {
         })
             
         
+    }
+}
+struct ND1_Previews: PreviewProvider {
+    static var previews: some View {
+        ND1()
     }
 }
