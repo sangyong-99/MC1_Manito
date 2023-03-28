@@ -7,14 +7,26 @@
 
 import SwiftUI
 
+
 struct Start: View {
+    @State private var isNextViewPresented = false
+
     var body: some View {
-        Text("Start")
-    }
+        VStack {
+                    Image("startbutton")
+                        .onTapGesture {
+                            self.isNextViewPresented = true
+                            
+                        }
+                        
+                }
+            }
+    
 }
 
 struct Start_Previews: PreviewProvider {
     static var previews: some View {
         Start()
+            .previewInterfaceOrientation(.landscapeRight)
     }
 }
