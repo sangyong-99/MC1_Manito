@@ -116,6 +116,7 @@ struct Scenepersonal1: View {
             Spacer()
             
         }
+        
         .background(Image("background_school"))
     }
 }
