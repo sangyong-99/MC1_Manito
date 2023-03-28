@@ -13,13 +13,15 @@ struct ND: View {
 
     var body: some View {
         
-        let timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true){timer in
-            n_sceneNumber += 1
-            print(n_sceneNumber)
-            if n_sceneNumber == 2 {
-                timer.invalidate()
-            }
-        }
+        
+        // 자동 화면 전환 코드
+//        let timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true){timer in
+//            n_sceneNumber += 1
+//            print(n_sceneNumber)
+//            if n_sceneNumber == 2 {
+//                timer.invalidate()
+//            }
+//        }
         VStack {
             if n_sceneNumber == 1 {
                 ND1()
@@ -31,6 +33,7 @@ struct ND: View {
                 ND3()
             }
         }
+        
     }
 }
 
@@ -39,5 +42,6 @@ struct ND: View {
 struct ND_Previews: PreviewProvider {
     static var previews: some View {
         ND()
+            .previewInterfaceOrientation(.landscapeRight)
     }
 }

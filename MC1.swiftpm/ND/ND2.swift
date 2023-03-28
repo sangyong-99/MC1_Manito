@@ -14,7 +14,8 @@ struct ND2: View {
     @State var bb: Bool = true
     
     var body: some View {
-        ZStack{
+        
+        VStack{
             if bb {
                 Image("left").resizable().scaledToFill()
             }
@@ -26,7 +27,8 @@ struct ND2: View {
             currentDate = value
             bb = !bb
         })
-            
+        
+    
         
     }
 }
