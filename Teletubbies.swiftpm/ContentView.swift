@@ -18,7 +18,7 @@ struct ContentView: View {
                 else if pageNumber == 3 {
                     Scenepersonal1()
                 }
-                else if pageNumber == 4 {
+            else if pageNumber == 4 {
                     Scenepersonal2()
                 }
                 else if pageNumber == 5 {
