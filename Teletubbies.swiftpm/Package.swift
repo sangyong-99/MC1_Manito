@@ -8,20 +8,19 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "MC1",
+    name: "Teletubbies",
     platforms: [
         .iOS("15.2")
     ],
     products: [
         .iOSApplication(
-            name: "MC1",
+            name: "Teletubbies",
             targets: ["AppModule"],
-            bundleIdentifier: "com.MC1",
-            teamIdentifier: "C3U3CZ666D",
+            bundleIdentifier: "LJH.Teletubbies",
             displayVersion: "1.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .earth),
-            accentColor: .presetColor(.teal),
+            appIcon: .placeholder(icon: .carrot),
+            accentColor: .presetColor(.cyan),
             supportedDeviceFamilies: [
                 .pad,
                 .phone
