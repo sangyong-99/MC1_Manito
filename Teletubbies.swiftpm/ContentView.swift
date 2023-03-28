@@ -7,7 +7,47 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             VStack{
-                Scenepersonal()
+                if pageNumber == 1 {
+                    Start()
+                        
+                }
+                else if pageNumber == 2 {
+                    Scene11()
+                        
+                }
+                else if pageNumber == 3 {
+                    Scenepersonal1()
+                        
+                }
+                else if pageNumber == 4 {
+                    Scenepersonal2()
+                        
+                }
+                else if pageNumber == 5 {
+                    Scenepersonal3()
+                        
+                }
+                else if pageNumber == 6 {
+                    Scenepersonal4()
+                        
+                }
+                else if pageNumber == 7 {
+                    Scenepersonal5()
+                        
+                }
+                else if pageNumber == 8 {
+                    sixteam()
+                        
+                }
+                else if pageNumber == 9 {
+                    Scene9()
+                        
+                }
+                else if pageNumber == 11 {
+                    End()
+                        
+                }
+                
             }
             .navigationTitle("타이틀")
             .toolbar{

@@ -7,7 +7,7 @@
 import SwiftUI
 import AVFoundation
 
-struct Scenepersonal: View {
+struct Scenepersonal3: View {
     @State var sceneNumber = 1
     @State var updown = false
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
@@ -120,9 +120,9 @@ struct Scenepersonal: View {
     }
 }
 
-struct Scenepersonal_Previews: PreviewProvider {
+struct Scenepersonal3_Previews: PreviewProvider {
     static var previews: some View {
-        Scenepersonal()
+        Scenepersonal3()
             .previewInterfaceOrientation(.landscapeRight)
     }
 }
