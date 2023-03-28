@@ -25,7 +25,7 @@ struct Wesley_Scene1: View {
                     .frame(width: widths[index], height: heights[index])
                     .foregroundColor(.white)
                     .cornerRadius(radiuses[index])
-                    .animation(.linear(duration: 1.5))
+                    .animation(.linear(duration: 1.0))
                     
             }
         }.onReceive(timer, perform: {value in
