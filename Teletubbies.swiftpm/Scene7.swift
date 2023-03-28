@@ -9,7 +9,9 @@ import SwiftUI
 
 struct Scene7: View {
     var body: some View {
-        Text("Scene7")
+        Rectangle()
+            .frame(width: 40, height: 40)
+            .foregroundColor(.clear)
     }
 }
 

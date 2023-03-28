@@ -11,14 +11,7 @@ struct Scene5: View {
     
     var body: some View {
         ZStack{
-            Capsule()
-                .frame(width: 200, height: 300)
-                .foregroundColor(.yellow)
-                .opacity(0.5)
-                .animation(.linear(duration: 2), value: 1.0)
             
-            Image("right_reverse").resizable().frame(width:200, height: 200)
-                .position(x: CGFloat(400), y: CGFloat(200))
         }
     }
 }
