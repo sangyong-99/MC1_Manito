@@ -8,7 +8,7 @@
 import SwiftUI
 import AVFoundation
 
-struct sixteam: View {
+struct PreviousGame: View {
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     @State var sceneNumber = 1
     @State var stop = 1
@@ -62,8 +62,8 @@ struct sixteam: View {
     }
 }
 
-struct sixteam_Previews: PreviewProvider {
+struct PreviousGame_Previews: PreviewProvider {
     static var previews: some View {
-        sixteam().previewInterfaceOrientation(.landscapeRight)
+        PreviousGame().previewInterfaceOrientation(.landscapeRight)
     }
 }
