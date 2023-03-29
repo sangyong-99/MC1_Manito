@@ -37,15 +37,13 @@ struct ContentView: View {
                 }
                 else if pageNumber == 9 {
                     Game()
-                        
                 }
-                else if pageNumber == 11 {
+                else if pageNumber == 10 {
                     End()
                         
                 }
                 
             }
-            .navigationTitle("타이틀")
             .toolbar{
                 ToolbarItemGroup(placement: .bottomBar){
                     if startpagebool{
@@ -59,12 +57,12 @@ struct ContentView: View {
                             })
                     }
                     else{
-                        Image("previousbutton").resizable()
+                        Image("previous2").resizable()
                             .frame(width: 100, height: 30)
                             .onTapGesture(perform: {
                                 pageNumber -= 1
                             })
-                        Image("nextbutton").resizable()
+                        Image("nextbutton2").resizable()
                             .frame(width: 100, height: 30)
                             .onTapGesture(perform: {
                                 pageNumber += 1

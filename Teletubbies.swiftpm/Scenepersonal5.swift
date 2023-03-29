@@ -15,14 +15,13 @@ struct Scenepersonal5: View {
     @State var currentDate: Date = Date()
     @State var change: Bool = true
     @State var up_down: Int = 1
-    @State var xpos = 380
+    @State var xpos = 430
     @State var ypos = 300
     @State var rec_xsize = 130
     @State var rec_ysize = 0
     @State var rec_ypos = 100
     @State var countss = 1
-    @State var text1 = "미모"
-    @State var ufo_xpos = 380
+    @State var ufo_xpos = 430
     @State var ufo_ypos = 50
     let syynthesizer = AVSpeechSynthesizer()
     
@@ -34,30 +33,31 @@ struct Scenepersonal5: View {
                 
                 if sceneNumber == 1 {
                     if change {
-                        Image("left").resizable().frame(width:100, height:150)
+                        Image("wesley1").resizable().frame(width:120, height:132)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     }
                     else {
-                        Image("right").resizable().frame(width:100, height:150)
+                        Image("wesley2").resizable().frame(width:120, height:132)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     }
                 }
                 else if sceneNumber == 2 {
                     Image("ufo").resizable()
-                        .frame(width: 300, height: 100)
-                        .position(x: CGFloat(380), y: CGFloat(50))
+                        .frame(width: 250, height: 150)
+                        .position(x: CGFloat(430), y: CGFloat(80))
                         .zIndex(1)
-                    Image("left").resizable().frame(width:100, height:150)
+                    Image("wesley1").resizable().frame(width:120, height:132)
                         .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     Rectangle()
                         .frame(width: CGFloat(rec_xsize), height: CGFloat(rec_ysize))
-                        .position(x: CGFloat(380), y: CGFloat(rec_ypos))
+                        .position(x: CGFloat(430), y: CGFloat(rec_ypos))
                         .foregroundColor(.yellow)
                         .opacity(0.5)
+                        .animation(.linear(duration: 2.5), value: rec_ysize)
                 }
                 else if sceneNumber == 3{
                     Image("ufo").resizable()
-                        .frame(width: 300, height: 100)
+                        .frame(width: 250, height: 150)
                         .position(x: CGFloat(ufo_xpos), y: CGFloat(ufo_ypos))
                     
                 }
