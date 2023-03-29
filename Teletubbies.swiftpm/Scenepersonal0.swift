@@ -26,6 +26,9 @@ struct Scenepersonal0: View {
     var ufo_ypos_list: [Int] = [8, 8, 8, 7, 7, 6, 6, 5, 5, 4, 3, 2, 1, 0, 0, 0 ,-3, -4, -5, -8]
     @State var ufo_ypos_list_index = 0
     
+    @State var ufo_xsize: CGFloat = 500
+    @State var ufo_ysize: CGFloat = 400
+    
     var body: some View {
         ZStack {
             
@@ -51,7 +54,7 @@ struct Scenepersonal0: View {
                 }
                 else if sceneNumber == 3 { // 릴리가 탄 UFO 포물선(ND가 구현할예정)모양으로 화면에서 빠져나간다.
                     ZStack{
-                        Image("ufo").resizable().frame(width:500, height: 400)
+                        Image("ufo").resizable().frame(width:ufo_xsize, height: ufo_ysize)
                             .position(x: CGFloat(ufo_xpos), y: CGFloat(ufo_ypos))
                     }
                 }
@@ -97,6 +100,9 @@ struct Scenepersonal0: View {
                         ufo_xpos -= 10
                         ufo_ypos -= 5
                         //UFO 포물선 날아가는거 나중에 작업
+                        
+                        ufo_xsize -= 7
+                        ufo_ysize -= 6
                     }
                 }
             })
