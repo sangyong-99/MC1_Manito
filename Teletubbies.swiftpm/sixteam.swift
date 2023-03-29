@@ -58,7 +58,7 @@ struct sixteam: View {
                     }
                 }
             })
-        }.background(Image("background_school"))
+        }.background(Image("background").resizable().scaledToFill()).ignoresSafeArea()
     }
 }
 

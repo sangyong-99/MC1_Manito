@@ -13,17 +13,13 @@ struct Start: View {
 
     var body: some View {
         VStack {
-            
-                    Image("startbutton")
-                        .onTapGesture {
-                            self.isNextViewPresented = true
-                            
-                        }
-                        
-                        
+            Image("startbutton")
+                .onTapGesture {
+                    self.isNextViewPresented = true
                 }
-            }
-    
+            
+        }
+    }
 }
 
 struct Start_Previews: PreviewProvider {

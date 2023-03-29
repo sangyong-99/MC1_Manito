@@ -108,7 +108,7 @@ struct Scene11: View {
             
             Spacer()
             
-        }.background(Image("background"))
+        }.background(Image("background").resizable().scaledToFill()).ignoresSafeArea()
             
     }
 }
