@@ -186,7 +186,7 @@ struct Game: View {
                     }
                 }
                 if sceneNumber == 11{ // 텔레토비 -> 몬스터 최후의 공격 전달
-                    Image("fireball").resizable().frame(width:100, height:120)
+                    Image("rainbow_apple").resizable().frame(width:100, height:120)
                         .position(x: CGFloat(color_attack_xpos), y: CGFloat(color_attack_ypos))
                     Image("threepeople1").resizable().frame(width:180, height:140)
                         .position(x: CGFloat(150), y: CGFloat(180))
