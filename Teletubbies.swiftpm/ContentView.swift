@@ -10,6 +10,8 @@ struct ContentView: View {
     let sound1 = Bundle.main.path(forResource: "BGM_Start", ofType: "mp3")
     let sound2 = Bundle.main.path(forResource: "sound2", ofType: "mp3")
     let sound3 = Bundle.main.path(forResource: "Rainbow", ofType: "mp3")
+    let monsterappear = Bundle.main.path(forResource: "monsterappear", ofType: "mp3")
+    let fight = Bundle.main.path(forResource: "fight", ofType: "mp3")
     var body: some View {
         NavigationView{
             VStack{
@@ -51,11 +53,18 @@ struct ContentView: View {
                 else if pageNumber == 9{
                     MonsterAppear().onAppear(){
                         audioPlayer?.stop()
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: monsterappear!))
+                        audioPlayer?.play()
+                                
                     }
                 }
                 
                 else if pageNumber == 10 {
-                    Game()
+                    Game().onAppear(){
+                        audioPlayer?.stop()
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: fight!))
+                        audioPlayer?.play()
+                    }
                 }
                 else if pageNumber == 11 {
                     End().onAppear(){
