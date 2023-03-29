@@ -32,7 +32,7 @@ struct PreviousGame: View {
                         .frame(width: 300, height: 100)
                         .position(x: CGFloat(380), y: CGFloat(50))
                     
-                    Image("paper").resizable()
+                    Image("sixpeople").resizable()
                         .frame(width: CGFloat(six_xsize), height: CGFloat(six_ysize))
                         .position(x: CGFloat(six_xpos), y: CGFloat(six_ypos))
                     

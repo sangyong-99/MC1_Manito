@@ -34,11 +34,11 @@ struct Scenepersonal3: View {
                 
                 if sceneNumber == 1 {
                     if change {
-                        Image("left").resizable().frame(width:100, height:150)
+                        Image("nd1").resizable().frame(width:100, height:150)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     }
                     else {
-                        Image("right").resizable().frame(width:100, height:150)
+                        Image("nd2").resizable().frame(width:100, height:150)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     }
                 }
@@ -47,7 +47,7 @@ struct Scenepersonal3: View {
                         .frame(width: 300, height: 100)
                         .position(x: CGFloat(380), y: CGFloat(50))
                         .zIndex(1)
-                    Image("left").resizable().frame(width:100, height:150)
+                    Image("nd1").resizable().frame(width:100, height:150)
                         .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     Rectangle()
                         .frame(width: CGFloat(rec_xsize), height: CGFloat(rec_ysize))

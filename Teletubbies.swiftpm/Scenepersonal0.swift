@@ -34,29 +34,24 @@ struct Scenepersonal0: View {
                     if change {
                         Image("Lily1").resizable().frame(width:100, height:150)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
-                        Image("ufo_1").resizable().frame(width:600, height: 500)
-                            .position(x: CGFloat(ufo_xpos), y: CGFloat(ufo_ypos))
+                        
                     }
                     else {
                         Image("Lily2").resizable().frame(width:150, height:155)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
-                        Image("ufo_1").resizable().frame(width:600, height: 500)
-                            .position(x: CGFloat(ufo_xpos), y: CGFloat(ufo_ypos))
+                        
                     }
                 }
                 else if sceneNumber == 2{ // UFO로 쏙 들어가는 릴리
                     ZStack{
                         Image("Lily1").resizable().frame(width:100, height:150)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
-                        Image("ufo_1").resizable().frame(width:600, height: 500)
-                            .position(x: CGFloat(ufo_xpos), y: CGFloat(ufo_ypos))
+                        
                     }
                 }
                 else if sceneNumber == 3 { // 릴리가 탄 UFO 포물선(ND가 구현할예정)모양으로 화면에서 빠져나간다.
                     ZStack{
-                        Image("Lily1").resizable().frame(width:100, height:150)
-                            .position(x: CGFloat(xpos), y: CGFloat(ypos))
-                        Image("ufo").resizable().frame(width:600, height: 500)
+                        Image("ufo").resizable().frame(width:500, height: 400)
                             .position(x: CGFloat(ufo_xpos), y: CGFloat(ufo_ypos))
                     }
                 }
