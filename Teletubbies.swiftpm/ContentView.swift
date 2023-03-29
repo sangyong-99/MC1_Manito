@@ -37,9 +37,8 @@ struct ContentView: View {
                 }
                 else if pageNumber == 9 {
                     Game()
-                        
                 }
-                else if pageNumber == 11 {
+                else if pageNumber == 10 {
                     End()
                         
                 }

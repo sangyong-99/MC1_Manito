@@ -43,8 +43,8 @@ struct Scenepersonal2: View {
                 }
                 else if sceneNumber == 2 {
                     Image("ufo").resizable()
-                        .frame(width: 300, height: 100)
-                        .position(x: CGFloat(430), y: CGFloat(50))
+                        .frame(width: 250, height: 150)
+                        .position(x: CGFloat(430), y: CGFloat(80))
                         .zIndex(1)
                     Image("su1").resizable().frame(width:120, height:132)
                         .position(x: CGFloat(xpos), y: CGFloat(ypos))
@@ -53,11 +53,11 @@ struct Scenepersonal2: View {
                         .position(x: CGFloat(430), y: CGFloat(rec_ypos))
                         .foregroundColor(.yellow)
                         .opacity(0.5)
-                        .animation(.linear(duration: 2.5), value: rec_ysize)
+                        .animation(.linear(duration: 0.5), value: rec_ysize)
                 }
                 else if sceneNumber == 3{
                     Image("ufo").resizable()
-                        .frame(width: 300, height: 100)
+                        .frame(width: 250, height: 150)
                         .position(x: CGFloat(ufo_xpos), y: CGFloat(ufo_ypos))
                     
                 }
