@@ -7,17 +7,20 @@
 
 import SwiftUI
 import AVFoundation
+import AVKit
 
 struct Scenepersonal0: View {
     @State var sceneNumber = 1
     @State var timerCount = 0
-    
+    @State var audioPlayer:AVAudioPlayer!
+    let lilyufo = Bundle.main.path(forResource: "lilyufo", ofType: "mp3")
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     let milli_timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     @State var currentDate: Date = Date()
     @State var change: Bool = true
-    
+    @State var countdk = 1
+    @State var dkdkdkdk: Bool = false
     @State var xpos = 400
     @State var ypos = 240
     
@@ -96,7 +99,15 @@ struct Scenepersonal0: View {
                     if xpos > 0 {
                         xpos -= 10
                         ypos -= 5
-                        
+                        if !dkdkdkdk && countdk == 1{
+                            dkdkdkdk.toggle()
+                            countdk += 1
+                        }
+                        if dkdkdkdk && countdk == 2{
+                            self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: lilyufo!))
+                            audioPlayer?.play()
+                        }
+                        dkdkdkdk = false
                         ufo_xpos -= 10
                         ufo_ypos -= 5
                         //UFO 포물선 날아가는거 나중에 작업
@@ -104,7 +115,11 @@ struct Scenepersonal0: View {
                         ufo_xsize -= 7
                         ufo_ysize -= 6
                     }
+                    if ufo_ysize <= 50{
+                        audioPlayer?.stop()
+                    }
                 }
+                
             })
             
             Spacer()

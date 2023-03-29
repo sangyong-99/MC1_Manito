@@ -1,10 +1,15 @@
 import SwiftUI
 import AVFoundation
+import AVKit
+
 
 struct ContentView: View {
     @State var pageNumber = 0
     @State var startpagebool: Bool = true
-    
+    @State var audioPlayer:AVAudioPlayer!
+    let sound1 = Bundle.main.path(forResource: "BGM_Start", ofType: "mp3")
+    let sound2 = Bundle.main.path(forResource: "sound2", ofType: "mp3")
+    let sound3 = Bundle.main.path(forResource: "Rainbow", ofType: "mp3")
     var body: some View {
         NavigationView{
             VStack{
@@ -12,15 +17,22 @@ struct ContentView: View {
                     Start0()
                 }
                 else if pageNumber == 1 {
-                    Start()
+                    Start().onAppear(){
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound1!))
+                        audioPlayer?.play()
+                    }
                 }
                 else if pageNumber == 2 {
-                    Scenepersonal0()
+                    Scenepersonal0().onAppear(){
+                        audioPlayer?.stop()
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
+                        audioPlayer?.play()
+                    }
                 }
                 else if pageNumber == 3 {
                     Scenepersonal1()
                 }
-            else if pageNumber == 4 {
+                else if pageNumber == 4 {
                     Scenepersonal2()
                 }
                 else if pageNumber == 5 {
@@ -35,12 +47,23 @@ struct ContentView: View {
                 else if pageNumber == 8 {
                     PreviousGame()
                 }
-                else if pageNumber == 9 {
+                
+                else if pageNumber == 9{
+                    MonsterAppear().onAppear(){
+                        audioPlayer?.stop()
+                    }
+                }
+                
+                else if pageNumber == 10 {
                     Game()
                 }
-                else if pageNumber == 10 {
-                    End()
-                        
+                else if pageNumber == 11 {
+                    End().onAppear(){
+                        audioPlayer?.stop()
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound3!))
+                        audioPlayer?.play()
+                    }
+                    
                 }
                 
             }

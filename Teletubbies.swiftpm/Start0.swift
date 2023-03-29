@@ -7,10 +7,13 @@
 
 import SwiftUI
 import AVFoundation
+import AVKit
 
 struct Start0: View {
+    let sound = Bundle.main.path(forResource: "BGM_Start", ofType: "mp3")
     @State private var isNextViewPresented = false
     @State var sceneNumber = 1
+    @State var audioPlayer:AVAudioPlayer!
     @State var currentDate: Date = Date()
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State var timerCount = 1
@@ -33,7 +36,9 @@ struct Start0: View {
                 
             })
             
-        }.background(Image("background").resizable().scaledToFill()).ignoresSafeArea()
+        }
+        .background(Image("background").resizable().scaledToFill()).ignoresSafeArea()
+        
     }
 }
 
