@@ -12,6 +12,7 @@ struct Start: View {
     @State private var isNextViewPresented = false
     @State var sceneNumber = 1
     @State var dkdk: Double = 0
+    @State var rotation = 0.0
     @State var currentDate: Date = Date()
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State var sun_xpos = 160
