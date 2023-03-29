@@ -7,8 +7,10 @@
 
 import SwiftUI
 import AVFoundation
-
+import AVKit
 struct PreviousGame: View {
+    @State var audioPlayer:AVAudioPlayer!
+    let landing = Bundle.main.path(forResource: "Landing", ofType: "mp3")
     let timer = Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()
     @State var sceneNumber = 1
     @State var stop = 1
@@ -47,6 +49,8 @@ struct PreviousGame: View {
                 else if stop == 2{
                     sceneNumber += 1
                     stop += 1
+                    self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: landing!))
+                    audioPlayer?.play()
                 }
                 else if stop == 3{
                     six_xsize += 15

@@ -6,12 +6,15 @@
 //
 import SwiftUI
 import AVFoundation
+import AVKit
 
 struct Scenepersonal3: View {
     @State var sceneNumber = 1
     @State var updown = false
+    @State var audioPlayer:AVAudioPlayer!
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     let timerss = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    let takeoff = Bundle.main.path(forResource: "takeoff", ofType: "mp3")
     @State var currentDate: Date = Date()
     @State var change: Bool = true
     @State var up_down: Int = 1
@@ -23,6 +26,8 @@ struct Scenepersonal3: View {
     @State var countss = 1
     @State var ufo_xpos = 430
     @State var ufo_ypos = 50
+    @State var countdk = 1
+    @State var dkdkdkdk: Bool = false
     let syynthesizer = AVSpeechSynthesizer()
     
     var body: some View {
@@ -97,6 +102,15 @@ struct Scenepersonal3: View {
                         rec_ysize -= 20
                         rec_ypos -= 10
                         ypos -= 20
+                        if !dkdkdkdk && countdk == 1{
+                            dkdkdkdk.toggle()
+                            countdk += 1
+                        }
+                        if dkdkdkdk && countdk == 2{
+                            self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: takeoff!))
+                            audioPlayer?.play()
+                        }
+                        dkdkdkdk = false
                         if rec_ysize == 0 {
                             sceneNumber += 1
                             up_down += 1

@@ -7,13 +7,15 @@
 
 import SwiftUI
 import AVFoundation
+import AVKit
 
 struct End: View {
+    @State var audioPlayer:AVAudioPlayer!
     @State var sceneNumber = 1
         @State var timerCount = 0
         
         let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-        
+    let laugh = Bundle.main.path(forResource: "laugh", ofType: "mp3")
         @State var currentDate: Date = Date()
         @State var change: Bool = true
         @State var isTimerRunning = true
@@ -45,7 +47,8 @@ struct End: View {
                 timerCount += 1
                 if timerCount > 3 {
                     rainbow_opacity = true
-                    
+                    self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: laugh!))
+                    audioPlayer?.play()
                 }
                 //timer.upstream.connect().cancel() 타이머 취소
             })
