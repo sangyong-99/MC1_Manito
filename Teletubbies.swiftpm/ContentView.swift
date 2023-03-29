@@ -3,7 +3,7 @@ import AVFoundation
 
 struct ContentView: View {
     @State var pageNumber = 1
-    
+    @State var startpagebool: Bool = true
     
     var body: some View {
         NavigationView{
@@ -45,17 +45,26 @@ struct ContentView: View {
             .navigationTitle("타이틀")
             .toolbar{
                 ToolbarItemGroup(placement: .bottomBar){
-                    Image("previousbutton").resizable()
-                        .frame(width: 100, height: 30)
-                        .onTapGesture(perform: {
-                            pageNumber -= 1
-                        })
-                    Image("nextbutton").resizable()
-                        .frame(width: 100, height: 30)
-                        .onTapGesture(perform: {
-                            pageNumber += 1
-                        })
-                    
+                    if startpagebool{
+                        Image("startbutton").resizable()
+                            .frame(width: 100, height: 30)
+                            .onTapGesture(perform: {
+                                pageNumber += 1
+                                startpagebool = false
+                            })
+                    }
+                    else{
+                        Image("previousbutton").resizable()
+                            .frame(width: 100, height: 30)
+                            .onTapGesture(perform: {
+                                pageNumber -= 1
+                            })
+                        Image("nextbutton").resizable()
+                            .frame(width: 100, height: 30)
+                            .onTapGesture(perform: {
+                                pageNumber += 1
+                            })
+                    }
                     
                 }
             }

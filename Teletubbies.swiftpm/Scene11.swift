@@ -56,7 +56,7 @@ struct Scene11: View {
                     ZStack{
                         Image("Lily1").resizable().frame(width:100, height:150)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
-                        Image("ufo_1").resizable().frame(width:600, height: 500)
+                        Image("ufo").resizable().frame(width:600, height: 500)
                             .position(x: CGFloat(ufo_xpos), y: CGFloat(ufo_ypos))
                     }
                 }
