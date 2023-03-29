@@ -10,7 +10,6 @@ struct ContentView: View {
             VStack{
                 if pageNumber == 1 {
                     Start()
-                        
                 }
                 else if pageNumber == 2 {
                     Scene11()
@@ -46,19 +45,18 @@ struct ContentView: View {
             .navigationTitle("타이틀")
             .toolbar{
                 ToolbarItemGroup(placement: .bottomBar){
-                    Button("Previous"){
-                        pageNumber -= 1
-                        if pageNumber <= 0 {
-                            pageNumber = 1
-                        }
-                        
-                    }
-                    Button("Next"){
-                        pageNumber += 1
-                        if pageNumber >= 12 {
-                            pageNumber = 11
-                        }
-                    }
+                    Image("previousbutton").resizable()
+                        .frame(width: 100, height: 30)
+                        .onTapGesture(perform: {
+                            pageNumber -= 1
+                        })
+                    Image("nextbutton").resizable()
+                        .frame(width: 100, height: 30)
+                        .onTapGesture(perform: {
+                            pageNumber += 1
+                        })
+                    
+                    
                 }
             }
         }

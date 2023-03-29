@@ -116,7 +116,7 @@ struct Scenepersonal5: View {
             Spacer()
             
         }
-        .background(Image("background_school"))
+        .background(Image("background").resizable().scaledToFill()).ignoresSafeArea()
     }
 }
 
