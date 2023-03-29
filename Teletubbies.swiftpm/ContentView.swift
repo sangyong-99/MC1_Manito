@@ -2,13 +2,16 @@ import SwiftUI
 import AVFoundation
 
 struct ContentView: View {
-    @State var pageNumber = 1
+    @State var pageNumber = 0
     @State var startpagebool: Bool = true
     
     var body: some View {
         NavigationView{
             VStack{
-                if pageNumber == 1 {
+                if pageNumber == 0 {
+                    Start0()
+                }
+                else if pageNumber == 1 {
                     Start()
                 }
                 else if pageNumber == 2 {
@@ -50,7 +53,9 @@ struct ContentView: View {
                             .frame(width: 100, height: 30)
                             .onTapGesture(perform: {
                                 pageNumber += 1
-                                startpagebool = false
+                                if pageNumber == 2{
+                                    startpagebool = false
+                                }
                             })
                     }
                     else{
@@ -64,6 +69,7 @@ struct ContentView: View {
                             .onTapGesture(perform: {
                                 pageNumber += 1
                             })
+                        
                     }
                     
                 }
