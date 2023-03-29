@@ -54,6 +54,7 @@ struct Scenepersonal1: View {
                         .position(x: CGFloat(380), y: CGFloat(rec_ypos))
                         .foregroundColor(.yellow)
                         .opacity(0.5)
+                        .animation(.linear(duration: 2.5), value: rec_ysize)
                 }
                 else if sceneNumber == 3{
                     Image("ufo").resizable()
