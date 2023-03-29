@@ -24,7 +24,8 @@ struct End: View {
     @State var attack_ypos = 250
     @State var color_attack_xpos = 200
     @State var color_attack_ypos = 250
-    
+    @State var countdk = 1
+    @State var dkdkdkdk: Bool = false
     @State var rainbow_opacity = false
     
     var body: some View {
@@ -52,8 +53,16 @@ struct End: View {
                 timerCount += 1
                 if timerCount > 3 {
                     rainbow_opacity = true
-                    self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: laugh!))
-                    audioPlayer?.play()
+                    if !dkdkdkdk && countdk == 1{
+                        dkdkdkdk.toggle()
+                        countdk += 1
+                    }
+                    if dkdkdkdk && countdk == 2{
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: laugh!))
+                        audioPlayer?.play()
+                    }
+                    dkdkdkdk = false
+                    
                 }
                 rotation += 20
                 //timer.upstream.connect().cancel() 타이머 취소

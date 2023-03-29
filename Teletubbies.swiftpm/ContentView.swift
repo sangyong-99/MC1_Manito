@@ -7,6 +7,7 @@ struct ContentView: View {
     @State var pageNumber = 0
     @State var startpagebool: Bool = true
     @State var audioPlayer:AVAudioPlayer!
+    let start00 = Bundle.main.path(forResource: "start00", ofType: "mp3")
     let sound1 = Bundle.main.path(forResource: "BGM_Start", ofType: "mp3")
     let sound2 = Bundle.main.path(forResource: "sound2", ofType: "mp3")
     let sound3 = Bundle.main.path(forResource: "Rainbow", ofType: "mp3")
@@ -16,10 +17,14 @@ struct ContentView: View {
         NavigationView{
             VStack{
                 if pageNumber == 0 {
-                    Start0()
+                    Start0().onAppear(){
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: start00!))
+                        audioPlayer?.play()
+                    }
                 }
                 else if pageNumber == 1 {
                     Start().onAppear(){
+                        audioPlayer?.stop()
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound1!))
                         audioPlayer?.play()
                     }
