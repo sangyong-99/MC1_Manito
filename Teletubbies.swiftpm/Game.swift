@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Scene9: View {
+struct Game: View {
     @State var sceneNumber = 1
     @State var timerCount = 0
     
@@ -235,13 +235,13 @@ struct Scene9: View {
             Spacer()
             
         }
-        .background(Image("background_school"))
+        .background(Image("background").resizable().scaledToFill()).ignoresSafeArea()
     }
 }
 
-struct Scene9_Previews: PreviewProvider {
+struct Game_Previews: PreviewProvider {
     static var previews: some View {
-        Scene9()
+        Game()
             .previewInterfaceOrientation(.landscapeRight
             )
     }

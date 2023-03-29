@@ -12,7 +12,7 @@ struct ContentView: View {
                     Start()
                 }
                 else if pageNumber == 2 {
-                    Scene11()
+                    Scenepersonal0()
                 }
                 else if pageNumber == 3 {
                     Scenepersonal1()
@@ -30,10 +30,10 @@ struct ContentView: View {
                     Scenepersonal5()
                 }
                 else if pageNumber == 8 {
-                    sixteam()
+                    PreviousGame()
                 }
                 else if pageNumber == 9 {
-                    Scene9()
+                    Game()
                         
                 }
                 else if pageNumber == 11 {
