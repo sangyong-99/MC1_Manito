@@ -12,21 +12,21 @@ import AVKit
 struct End: View {
     @State var audioPlayer:AVAudioPlayer!
     @State var sceneNumber = 1
-        @State var timerCount = 0
-        
-        let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    @State var timerCount = 0
+    @State var rotation = 0.0
+    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     let laugh = Bundle.main.path(forResource: "laugh", ofType: "mp3")
-        @State var currentDate: Date = Date()
-        @State var change: Bool = true
-        @State var isTimerRunning = true
-        
-        @State var attack_xpos = 500
-        @State var attack_ypos = 250
-        @State var color_attack_xpos = 200
-        @State var color_attack_ypos = 250
-        
-        @State var rainbow_opacity = false
-
+    @State var currentDate: Date = Date()
+    @State var change: Bool = true
+    @State var isTimerRunning = true
+    
+    @State var attack_xpos = 500
+    @State var attack_ypos = 250
+    @State var color_attack_xpos = 200
+    @State var color_attack_ypos = 250
+    
+    @State var rainbow_opacity = false
+    
     var body: some View {
         ZStack {
             ZStack{
@@ -37,7 +37,12 @@ struct End: View {
                     Image("rainbow").resizable().frame(width:1000, height:400)
                         .opacity(rainbow_opacity ? 1.0 : 0.0)
                         .animation(.easeIn(duration:2.5), value: rainbow_opacity)
-
+                    Image("sun").resizable().frame(width: 200, height: 200)
+                        .rotationEffect(.degrees(rotation), anchor: .center)
+                        .position(x: CGFloat(200), y: CGFloat(80))
+                    Image("sun").resizable().frame(width: 200, height: 200)
+                        .rotationEffect(.degrees(rotation), anchor: .center)
+                        .position(x: CGFloat(810), y: CGFloat(80))
                 }
                 
             }.onReceive(timer, perform: { value in
@@ -50,9 +55,10 @@ struct End: View {
                     self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: laugh!))
                     audioPlayer?.play()
                 }
+                rotation += 20
                 //timer.upstream.connect().cancel() 타이머 취소
             })
-
+            
             
         }
     }
