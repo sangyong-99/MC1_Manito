@@ -13,11 +13,13 @@ struct Start: View {
 
     var body: some View {
         VStack {
+            
                     Image("startbutton")
                         .onTapGesture {
                             self.isNextViewPresented = true
                             
                         }
+                        
                         
                 }
             }
