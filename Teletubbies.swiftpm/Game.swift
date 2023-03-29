@@ -6,14 +6,20 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct Game: View {
+    @State var audioPlayer:AVAudioPlayer!
     @State var sceneNumber = 1
     @State var timerCount = 0
     
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     let milli_timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-    
+    let attack = Bundle.main.path(forResource: "Attack", ofType: "mp3")
+    let rainbowattack = Bundle.main.path(forResource: "rainbowattack", ofType: "mp3")
+    let telehit = Bundle.main.path(forResource: "telehit", ofType: "mp3")
+    let monsterhit = Bundle.main.path(forResource: "monsterhit", ofType: "mp3")
+    let monsterdie = Bundle.main.path(forResource: "monsterdie", ofType: "mp3")
     @State var currentDate: Date = Date()
     @State var change: Bool = true
     @State var isTimerRunning = true
@@ -30,6 +36,13 @@ struct Game: View {
     
     @State var prefixSum = 1
     @State var attackSceneDuration = 0
+    
+    
+    @State var countdk = 1
+    @State var dkdkdkdk: Bool = false
+    
+    
+    
     
     var body: some View {
         ZStack {
@@ -96,7 +109,7 @@ struct Game: View {
                     }
                 }
                 else if sceneNumber == 5 { // 텔레토비 -> 몬스터 공격 전달
-                    Image("rainbow_apple").resizable().frame(width:100, height:120)
+                    Image("appleweapon").resizable().frame(width:100, height:120)
                         .position(x: CGFloat(color_attack_xpos), y: CGFloat(color_attack_ypos))
                     
                     Image("threepeople1").resizable().frame(width:180, height:140)
@@ -266,8 +279,19 @@ struct Game: View {
                 else if sceneNumber == 13 {
                     monsterOpacity = 0
                     sceneChangeCount += 1
+                    //소리 나는 코드
+                    if !dkdkdkdk && countdk == 9{
+                        dkdkdkdk.toggle()
+                        countdk += 1
+                    }
+                    if dkdkdkdk && countdk == 10{
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: monsterdie!))
+                        audioPlayer?.play()
+                    }
+                    dkdkdkdk = false
+                    
                     if sceneChangeCount > 5 {
-                        sceneNumber = 14
+                        sceneNumber = 13
                     }
                 }
                 else{
@@ -277,6 +301,17 @@ struct Game: View {
                 if sceneNumber == 2 {
                     prefixSum += 1
                     attack_xpos -= prefixSum
+                    //소리나는 코드
+                    if !dkdkdkdk && countdk == 1{
+                        dkdkdkdk.toggle()
+                        countdk += 1
+                    }
+                    if dkdkdkdk && countdk == 2{
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: attack!))
+                        audioPlayer?.play()
+                    }
+                    dkdkdkdk = false
+                    
                     if attack_xpos < 200 {
                         sceneNumber = 3
                         prefixSum = 0
@@ -285,6 +320,17 @@ struct Game: View {
                 else if sceneNumber == 5 {
                     prefixSum += 1
                     color_attack_xpos += prefixSum
+                    //소리 나는 코드
+                    if !dkdkdkdk && countdk == 3{
+                        dkdkdkdk.toggle()
+                        countdk += 1
+                    }
+                    if dkdkdkdk && countdk == 4{
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: attack!))
+                        audioPlayer?.play()
+                    }
+                    dkdkdkdk = false
+                    
                     if color_attack_xpos > 500 {
                         sceneNumber = 6
                         prefixSum = 0
@@ -293,6 +339,16 @@ struct Game: View {
                 else if sceneNumber == 8 {
                     prefixSum += 1
                     attack_xpos -= prefixSum
+                    //소리 나는 코드
+                    if !dkdkdkdk && countdk == 5{
+                        dkdkdkdk.toggle()
+                        countdk += 1
+                    }
+                    if dkdkdkdk && countdk == 6{
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: attack!))
+                        audioPlayer?.play()
+                    }
+                    dkdkdkdk = false
                     if attack_xpos < 200 {
                         sceneNumber = 9
                         prefixSum = 0
@@ -300,6 +356,17 @@ struct Game: View {
                 }
                 else if sceneNumber == 11 {
                     prefixSum += 1
+                    //소리 나는 코드
+                    if !dkdkdkdk && countdk == 7{
+                        dkdkdkdk.toggle()
+                        countdk += 1
+                    }
+                    if dkdkdkdk && countdk == 8{
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: rainbowattack!))
+                        audioPlayer?.play()
+                    }
+                    dkdkdkdk = false
+                    
                     color_attack_xpos += prefixSum
                     if color_attack_xpos > 500 {
                         sceneNumber = 12
@@ -309,6 +376,17 @@ struct Game: View {
                 
                 if sceneNumber == 3 {
                     attackSceneDuration += 1
+                    //소리 나는 코드
+                    if !dkdkdkdk && countdk == 2{
+                        dkdkdkdk.toggle()
+                        countdk += 1
+                    }
+                    if dkdkdkdk && countdk == 3{
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: telehit!))
+                        audioPlayer?.play()
+                    }
+                    dkdkdkdk = false
+                    
                     if attackSceneDuration > 3 {
                         attack_xpos = 500
                         attack_ypos = 250
@@ -318,6 +396,17 @@ struct Game: View {
                 }
                 else if sceneNumber == 6 {
                     attackSceneDuration += 1
+                    //소리 나는 코드
+                    if !dkdkdkdk && countdk == 4{
+                        dkdkdkdk.toggle()
+                        countdk += 1
+                    }
+                    if dkdkdkdk && countdk == 5{
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: monsterhit!))
+                        audioPlayer?.play()
+                    }
+                    dkdkdkdk = false
+                    
                     if attackSceneDuration > 3 {
                         color_attack_xpos = 200
                         color_attack_ypos = 250
@@ -327,6 +416,17 @@ struct Game: View {
                 }
                 else if sceneNumber == 9 {
                     attackSceneDuration += 1
+                    //소리 나는 코드
+                    if !dkdkdkdk && countdk == 6{
+                        dkdkdkdk.toggle()
+                        countdk += 1
+                    }
+                    if dkdkdkdk && countdk == 7{
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: telehit!))
+                        audioPlayer?.play()
+                    }
+                    dkdkdkdk = false
+                    
                     if attackSceneDuration > 3 {
                         attack_xpos = 500
                         attack_ypos = 250
@@ -336,6 +436,17 @@ struct Game: View {
                 }
                 else if sceneNumber == 12 {
                     attackSceneDuration += 1
+                    //소리 나는 코드
+                    if !dkdkdkdk && countdk == 8{
+                        dkdkdkdk.toggle()
+                        countdk += 1
+                    }
+                    if dkdkdkdk && countdk == 9{
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: monsterhit!))
+                        audioPlayer?.play()
+                    }
+                    dkdkdkdk = false
+                    
                     if attackSceneDuration > 3 {
                         color_attack_xpos = 200
                         color_attack_ypos = 250

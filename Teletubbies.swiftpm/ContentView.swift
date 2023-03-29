@@ -32,19 +32,19 @@ struct ContentView: View {
                     }
                 }
                 else if pageNumber == 3 {
-                    Scenepersonal1()
+                    Scenepersonal2()
                 }
                 else if pageNumber == 4 {
-                    Scenepersonal2()
+                    Scenepersonal4()
                 }
                 else if pageNumber == 5 {
                     Scenepersonal3()
                 }
                 else if pageNumber == 6 {
-                    Scenepersonal4()
+                    Scenepersonal5()
                 }
                 else if pageNumber == 7 {
-                    Scenepersonal5()
+                    Scenepersonal1()
                 }
                 else if pageNumber == 8 {
                     PreviousGame()
