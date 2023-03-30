@@ -10,19 +10,18 @@ import AVFoundation
 import AVKit
 
 struct End: View {
+    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    let laugh = Bundle.main.path(forResource: "laugh", ofType: "mp3")
     let speech = AVSpeechSynthesizer()
-    let siri_naration1 = AVSpeechUtterance(string:"무지개 -- 빔을 맞은 몬스터는 결국 쓰러지고.애플 동산 하늘엔 몬스터가 삼켰던 색들로 이루어진 큰 무지개가 뜹니다. 여섯 용사들은 무지개 아래에서 꺄르륵 꺄르륵 행복해해요.")
+    let siri_naration1 = AVSpeechUtterance(string:"여섯 용사들은 무지개 아래에서 꺄르륵 꺄르륵 행복해해요.")
     @State var voicecount = 0
     @State var audioPlayer:AVAudioPlayer!
     @State var sceneNumber = 1
     @State var timerCount = 0
     @State var rotation = 0.0
-    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-    let laugh = Bundle.main.path(forResource: "laugh", ofType: "mp3")
     @State var currentDate: Date = Date()
     @State var change: Bool = true
     @State var isTimerRunning = true
-    
     @State var attack_xpos = 500
     @State var attack_ypos = 250
     @State var color_attack_xpos = 200
@@ -52,7 +51,6 @@ struct End: View {
             }.onReceive(timer, perform: { value in
                 currentDate = value
                 change.toggle()
-                
                 if voicecount == 0{
                     siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
                     siri_naration1.rate = 0.38
@@ -61,7 +59,6 @@ struct End: View {
                     speech.speak(siri_naration1)
                     voicecount += 1
                 }
-                
                 timerCount += 1
                 if timerCount > 3 {
                     rainbow_opacity = true
@@ -75,13 +72,9 @@ struct End: View {
                         audioPlayer?.play()
                     }
                     audio_scene_bool = false
-                    
                 }
                 rotation += 20
-                //timer.upstream.connect().cancel() 타이머 취소
             })
-            
-            
         }
     }
 }

@@ -11,23 +11,21 @@ import AVFoundation
 struct MonsterAppear: View {
     let speech = AVSpeechSynthesizer()
     let siri_naration1 = AVSpeechUtterance(string: "하지만 눈 앞에 나타난 건 무지개가 아니라 거대한 흑백의 챌린지 괴물이었어요! 흑백의 챌린지 괴물은 우리의 색을 빼앗는 무시무시한 괴물이에요.")
-    @State var voicecount = 0
-    @State var timerCount = 0
-    
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     let milli_timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    @State var bossImageList: [Image] = [Image("bossMonster_basic"), Image("bossMonster_try"), Image("bossMonster_basic_reverse"), Image("bossMonster_try_reverse")]
+    @State var listIndex = 0
     @State var currentDate: Date = Date()
+    @State var voicecount = 0
+    @State var timerCount = 0
     @State var sceneNumber = 1
     @State var change = true
     @State var blackOpacity = 1.0
-    @State var bossImageList: [Image] = [Image("bossMonster_basic"), Image("bossMonster_try"), Image("bossMonster_basic_reverse"), Image("bossMonster_try_reverse")]
-    @State var listIndex = 0
     
     var body: some View {
         ZStack {
             ZStack{
                 Rectangle().fill(.black).zIndex(1).opacity(blackOpacity).animation(.easeIn(duration: 2), value: blackOpacity)
-
                 if sceneNumber == 1 {
                     if change {
                         Image("bossMonster_basic").resizable().frame(width:400, height:300)
@@ -46,8 +44,6 @@ struct MonsterAppear: View {
                     bossImageList[listIndex].resizable().frame(width:400, height:300)
                         .position(x: CGFloat(350), y: CGFloat(200))
                 }
-                
-                
             }.onReceive(timer, perform: { value in
                 if voicecount == 0{
                     siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
@@ -67,7 +63,6 @@ struct MonsterAppear: View {
                 else if sceneNumber == 2 {
                     blackOpacity = 0
                     timerCount += 1
-                    
                     if timerCount > 7 {
                         sceneNumber = 3
                         timerCount = 0

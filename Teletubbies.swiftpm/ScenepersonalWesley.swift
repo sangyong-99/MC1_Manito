@@ -11,13 +11,13 @@ import AVKit
 struct ScenepersonalWesley: View {
     let speech = AVSpeechSynthesizer()
     let siri_naration1 = AVSpeechUtterance(string: "파란색 용사 웨슬리가 보이네요! 똘망똘망한 웨슬리는 탐사선을 먼저 발견하고 반갑게 소리쳐요. 나는 성장 무지개를 찾고있어! 나도 함께 가자!")
+    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    let timerss = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    let takeoff = Bundle.main.path(forResource: "takeoff", ofType: "mp3")
     @State var voicecount = 0
     @State var sceneNumber = 1
     @State var updown = false
     @State var audioPlayer:AVAudioPlayer!
-    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-    let timerss = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-    let takeoff = Bundle.main.path(forResource: "takeoff", ofType: "mp3")
     @State var currentDate: Date = Date()
     @State var change: Bool = true
     @State var up_down: Int = 1
@@ -31,14 +31,10 @@ struct ScenepersonalWesley: View {
     @State var ufo_ypos = 50
     @State var audio_scene_count = 1
     @State var audio_scene_bool: Bool = false
-    let syynthesizer = AVSpeechSynthesizer()
     
     var body: some View {
         ZStack {
-            
             ZStack{
-                
-                
                 if sceneNumber == 1 {
                     if change {
                         Image("wesley1").resizable().frame(width:120, height:132)
@@ -67,10 +63,7 @@ struct ScenepersonalWesley: View {
                     Image("ufo").resizable()
                         .frame(width: 250, height: 150)
                         .position(x: CGFloat(ufo_xpos), y: CGFloat(ufo_ypos))
-                    
                 }
-                
-                
             }.onReceive(timer, perform: { value in
                 currentDate = value
                 change.toggle()
@@ -119,6 +112,7 @@ struct ScenepersonalWesley: View {
                         }
                         if audio_scene_bool && audio_scene_count == 2{
                             self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: takeoff!))
+                            audioPlayer?.setVolume(0.1, fadeDuration: 1)
                             audioPlayer?.play()
                         }
                         audio_scene_bool = false
@@ -130,16 +124,8 @@ struct ScenepersonalWesley: View {
                     else if up_down == 3{
                         ufo_ypos -= 10
                     }
-                    
                 }
-                
-                
-                
-                
-                
             })
-            Spacer()
-            
         }
         .background(Image("background").resizable().scaledToFill()).ignoresSafeArea()
     }

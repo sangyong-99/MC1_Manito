@@ -8,19 +8,20 @@
 import SwiftUI
 import AVFoundation
 
- 
-struct Start: View {
+
+struct Start2: View {
     let speech = AVSpeechSynthesizer()
     let siri_naration1 = AVSpeechUtterance(string: "넓고 푸른 애플 동산에는 각자 무지개를 찾고 있는 용사들이 살고있었어요.")
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State private var isNextViewPresented = false
     @State var sceneNumber = 1
     @State var voicecount = 0
     @State var sun_opacity: Double = 0
     @State var currentDate: Date = Date()
-    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State var sun_xpos = 160
     @State var sun_ypos = 280
     @State var timerCount = 1
+    
     var body: some View {
         ZStack {
             ZStack{
@@ -57,7 +58,6 @@ struct Start: View {
                         voicecount += 1
                     }
                 }
-                
             })
             
         }.background(Image("background").resizable().scaledToFill()).ignoresSafeArea()
@@ -66,7 +66,7 @@ struct Start: View {
 
 struct Start_Previews: PreviewProvider {
     static var previews: some View {
-        Start()
+        Start2()
             .previewInterfaceOrientation(.landscapeRight)
     }
 }
