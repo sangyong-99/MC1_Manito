@@ -10,14 +10,14 @@ import AVKit
 
 struct ScenepersonalSu: View {
     let speech = AVSpeechSynthesizer()
-    let siri_naration1 = AVSpeechUtterance(string: "어?---------- 저기 해맑게 웃고있는 주황색 용사 수가 보이네요. 수는 오랫동안 낭만 무지개를 쫓아왔어요. “내가 이 여정에 낭만을 더해줄게!. 수는 반갑게 무지개 탐사선에 탑승합니다.")
+    let siri_naration1 = AVSpeechUtterance(string: "어?---------- 저기 해맑게 웃고있는 주황색 용사 수가 보이네요. 수는 오래간 낭만 무지개를 쫓아왔어요. “내가 이 여정에 낭만을 더해줄게!. 수는 반갑게 무지개 탐사선에 탑승합니다.")
+    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    let timerss = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    let takeoff = Bundle.main.path(forResource: "takeoff", ofType: "mp3")
     @State var voicecount = 0
     @State var sceneNumber = 1
     @State var updown = false
     @State var audioPlayer:AVAudioPlayer!
-    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-    let timerss = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-    let takeoff = Bundle.main.path(forResource: "takeoff", ofType: "mp3")
     @State var currentDate: Date = Date()
     @State var change: Bool = true
     @State var up_down: Int = 1
@@ -26,19 +26,15 @@ struct ScenepersonalSu: View {
     @State var rec_xsize = 130
     @State var rec_ysize = 0
     @State var rec_ypos = 100
-    @State var countss = 1
+    @State var scenecount = 1
     @State var ufo_xpos = 430
     @State var ufo_ypos = 50
     @State var audio_scene_count = 1
     @State var audio_scene_bool: Bool = false
     
-    
     var body: some View {
         ZStack {
-            
             ZStack{
-                
-                
                 if sceneNumber == 1 {
                     if change {
                         Image("su1").resizable().frame(width:120, height:132)
@@ -69,13 +65,10 @@ struct ScenepersonalSu: View {
                         .position(x: CGFloat(ufo_xpos), y: CGFloat(ufo_ypos))
                     
                 }
-                
-                
             }.onReceive(timer, perform: { value in
                 currentDate = value
                 change.toggle()
                 if voicecount == 0{
-                    
                     siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
                     siri_naration1.rate = 0.4
                     siri_naration1.pitchMultiplier = 1
@@ -83,17 +76,17 @@ struct ScenepersonalSu: View {
                     speech.speak(siri_naration1)
                     voicecount += 1
                 }
-                if countss == 1{
-                    countss += 1
+                if scenecount == 1{
+                    scenecount += 1
                 }
-                else if countss < 6{
+                else if scenecount < 6{
                     if change {
                         ypos -= 20
                     }
                     else {
                         ypos += 20
                     }
-                    countss += 1
+                    scenecount += 1
                 }
                 else {
                     sceneNumber += 1
@@ -102,7 +95,7 @@ struct ScenepersonalSu: View {
             })
             .onReceive(timerss, perform: {value in
                 currentDate = value
-                if countss == 6{
+                if scenecount == 6{
                     if up_down == 1 {
                         rec_ysize += 20
                         rec_ypos += 10
@@ -120,6 +113,7 @@ struct ScenepersonalSu: View {
                         }
                         if audio_scene_bool && audio_scene_count == 2{
                             self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: takeoff!))
+                            audioPlayer?.setVolume(0.1, fadeDuration: 1)
                             audioPlayer?.play()
                         }
                         audio_scene_bool = false
@@ -131,16 +125,8 @@ struct ScenepersonalSu: View {
                     else if up_down == 3{
                         ufo_ypos -= 10
                     }
-                    
                 }
-                
-                
-                
-                
-                
             })
-            Spacer()
-            
         }
         .background(Image("background").resizable().scaledToFill()).ignoresSafeArea()
     }

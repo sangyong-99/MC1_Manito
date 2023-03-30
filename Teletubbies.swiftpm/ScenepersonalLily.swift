@@ -12,51 +12,43 @@ import AVKit
 struct ScenepersonalLily: View {
     let speech = AVSpeechSynthesizer()
     let siri_naration1 = AVSpeechUtterance(string: "드넓은 동산에서 가장 먼저 보이는 건 빨간색 용사 릴리예요.-- 언제나 즐거운 릴리는 애플 동산에서 더 큰 '재미 무지개'를 찾고 싶어해요. 그래서 무지개 탐사선에 첫 번째로 올라탑니다.")
+    let lilyufo = Bundle.main.path(forResource: "lilyufo", ofType: "mp3")
+    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    let milli_timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    var ufo_ypos_list: [Int] = [8, 8, 8, 7, 7, 6, 6, 5, 5, 4, 3, 2, 1, 0, 0, 0 ,-3, -4, -5, -8]
     @State var voicecount = 0
     @State var sceneNumber = 1
     @State var timerCount = 0
     @State var audioPlayer:AVAudioPlayer!
-    let lilyufo = Bundle.main.path(forResource: "lilyufo", ofType: "mp3")
-    let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
-    let milli_timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
-    
     @State var currentDate: Date = Date()
     @State var change: Bool = true
     @State var audio_scene_count = 1  //scene if 넘어가는 인트
     @State var audio_scene_bool: Bool = false   //scene if 넘어가는 불
     @State var xpos = 400
     @State var ypos = 240
-    
     @State var ufo_xpos = 640
     @State var ufo_ypos = 280
-    var ufo_ypos_list: [Int] = [8, 8, 8, 7, 7, 6, 6, 5, 5, 4, 3, 2, 1, 0, 0, 0 ,-3, -4, -5, -8]
     @State var ufo_ypos_list_index = 0
-    
     @State var ufo_xsize: CGFloat = 500
     @State var ufo_ysize: CGFloat = 400
     
     var body: some View {
         ZStack {
-            
             ZStack{
                 if sceneNumber == 1 { // 점프하면서 대사?
                     if change {
-                        
                         Image("Lily1").resizable().frame(width:100, height:150)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
-                        
                     }
                     else {
                         Image("Lily2").resizable().frame(width:150, height:155)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
-                        
                     }
                 }
                 else if sceneNumber == 2{ // UFO로 쏙 들어가는 릴리
                     ZStack{
                         Image("Lily1").resizable().frame(width:100, height:150)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
-                        
                     }
                 }
                 else if sceneNumber == 3 { // 릴리가 탄 UFO 포물선(ND가 구현할예정)모양으로 화면에서 빠져나간다.
@@ -68,10 +60,8 @@ struct ScenepersonalLily: View {
                 else {
                     
                 }
-                
             }.onReceive(timer, perform: { value in
                 currentDate = value
-                
                 change.toggle()
                 timerCount += 1
                 if voicecount == 0{
@@ -88,13 +78,10 @@ struct ScenepersonalLily: View {
                 else if sceneNumber == 1 && timerCount%2 == 0{
                     ypos += 10
                 }
-                
                 if timerCount >= 12 {
                     sceneNumber = 2
                     timer.upstream.connect().cancel()
                 }
-                //timer.upstream.connect().cancel() 타이머 취소
-                
             }).onReceive(milli_timer, perform: { value in
                 if sceneNumber == 2 {
                     if sceneNumber == 2 && xpos < 600 {
@@ -116,6 +103,7 @@ struct ScenepersonalLily: View {
                         }
                         if audio_scene_bool && audio_scene_count == 2{
                             self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: lilyufo!))
+                            audioPlayer?.setVolume(0.1, fadeDuration: 1)
                             audioPlayer?.play()
                         }
                         audio_scene_bool = false
@@ -130,13 +118,8 @@ struct ScenepersonalLily: View {
                         audioPlayer?.stop()
                     }
                 }
-                
             })
-            
-            Spacer()
-            
         }.background(Image("background").resizable().scaledToFill()).ignoresSafeArea()
-            
     }
 }
 

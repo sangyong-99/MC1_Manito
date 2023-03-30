@@ -17,7 +17,7 @@ struct ContentView: View {
         NavigationView{
             VStack{
                 if pageNumber == 0 {
-                    Start0().onAppear(){
+                    Start1().onAppear(){
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: start00!))
                         audioPlayer?.setVolume(0.3, fadeDuration: 1)
                         audioPlayer?.play()
@@ -25,7 +25,7 @@ struct ContentView: View {
                     }
                 }
                 else if pageNumber == 1 {
-                    Start().onAppear(){
+                    Start2().onAppear(){
                         audioPlayer?.stop()
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound1!))
                         audioPlayer?.setVolume(0.25, fadeDuration: 1)
