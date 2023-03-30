@@ -47,18 +47,6 @@ struct End2: View {
                 currentDate = value
                 change.toggle()
                 timerCount += 1
-                if timerCount > 3 {
-                    if !audio_scene_bool && audio_scene_count == 1{
-                        audio_scene_bool.toggle()
-                        audio_scene_count += 1
-                    }
-                    if audio_scene_bool && audio_scene_count == 2{
-                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: Lingo_Voice!))
-                        audioPlayer?.setVolume(0.35, fadeDuration: 1)
-                        audioPlayer?.play()
-                    }
-                    audio_scene_bool = false
-                }
                 rotation += 20
             })
         }

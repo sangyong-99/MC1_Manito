@@ -10,6 +10,7 @@ struct ContentView: View {
     let sound3 = Bundle.main.path(forResource: "Rainbow", ofType: "mp3")
     let monsterappear = Bundle.main.path(forResource: "monsterappear", ofType: "mp3")
     let fight = Bundle.main.path(forResource: "fight", ofType: "mp3")
+    let Lingo_Voice = Bundle.main.path(forResource: "Lingo_Voice", ofType: "m4a")
     @State var pageNumber = 0
     @State var startpagebool: Bool = true
     @State var audioPlayer:AVAudioPlayer!
@@ -87,7 +88,8 @@ struct ContentView: View {
                 else if pageNumber == 13 {
                     End2().onAppear(){
                         audioPlayer?.stop()
-                        
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: Lingo_Voice!))
+                        audioPlayer?.play()
                     }
                 }
             }
