@@ -4,15 +4,16 @@ import AVKit
 
 
 struct ContentView: View {
-    @State var pageNumber = 0
-    @State var startpagebool: Bool = true
-    @State var audioPlayer:AVAudioPlayer!
     let start00 = Bundle.main.path(forResource: "start00", ofType: "mp3")
     let sound1 = Bundle.main.path(forResource: "BGM_Start", ofType: "mp3")
     let sound2 = Bundle.main.path(forResource: "sound2", ofType: "mp3")
     let sound3 = Bundle.main.path(forResource: "Rainbow", ofType: "mp3")
     let monsterappear = Bundle.main.path(forResource: "monsterappear", ofType: "mp3")
     let fight = Bundle.main.path(forResource: "fight", ofType: "mp3")
+    @State var pageNumber = 0
+    @State var startpagebool: Bool = true
+    @State var audioPlayer:AVAudioPlayer!
+
     var body: some View {
         NavigationView{
             VStack{
@@ -21,7 +22,6 @@ struct ContentView: View {
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: start00!))
                         audioPlayer?.setVolume(0.3, fadeDuration: 1)
                         audioPlayer?.play()
-                        
                     }
                 }
                 else if pageNumber == 1 {
@@ -58,25 +58,26 @@ struct ContentView: View {
                 else if pageNumber == 8 {
                     PreviousGame()
                 }
-                
                 else if pageNumber == 9{
                     MonsterAppear().onAppear(){
                         audioPlayer?.stop()
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: monsterappear!))
                         audioPlayer?.setVolume(0.35, fadeDuration: 1)
                         audioPlayer?.play()
-                                
+                        
                     }
                 }
-                
-                else if pageNumber == 10 {
+                else if pageNumber == 10{
+                    ThreeThree()
+                }
+                else if pageNumber == 11 {
                     Game().onAppear(){
                         audioPlayer?.stop()
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: fight!))
                         audioPlayer?.play()
                     }
                 }
-                else if pageNumber == 11 {
+                else if pageNumber == 12 {
                     End().onAppear(){
                         audioPlayer?.stop()
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound3!))
@@ -109,9 +110,7 @@ struct ContentView: View {
                             .onTapGesture(perform: {
                                 pageNumber += 1
                             })
-                        
                     }
-                    
                 }
             }
         }
