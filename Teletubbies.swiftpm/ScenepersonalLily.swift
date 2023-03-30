@@ -9,7 +9,10 @@ import SwiftUI
 import AVFoundation
 import AVKit
 
-struct Scenepersonal0: View {
+struct ScenepersonalLily: View {
+    let speech = AVSpeechSynthesizer()
+    let siri_naration1 = AVSpeechUtterance(string: "드넓은 동산에서 가장 먼저 보이는 건 빨간색 용사 릴리예요.-- 언제나 즐거운 릴리는 애플 동산에서 더 큰 '재미 무지개'를 찾고 싶어해요. 그래서 무지개 탐사선에 첫 번째로 올라탑니다.")
+    @State var voicecount = 0
     @State var sceneNumber = 1
     @State var timerCount = 0
     @State var audioPlayer:AVAudioPlayer!
@@ -19,8 +22,8 @@ struct Scenepersonal0: View {
     
     @State var currentDate: Date = Date()
     @State var change: Bool = true
-    @State var countdk = 1
-    @State var dkdkdkdk: Bool = false
+    @State var audio_scene_count = 1  //scene if 넘어가는 인트
+    @State var audio_scene_bool: Bool = false   //scene if 넘어가는 불
     @State var xpos = 400
     @State var ypos = 240
     
@@ -38,6 +41,7 @@ struct Scenepersonal0: View {
             ZStack{
                 if sceneNumber == 1 { // 점프하면서 대사?
                     if change {
+                        
                         Image("Lily1").resizable().frame(width:100, height:150)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                         
@@ -70,7 +74,14 @@ struct Scenepersonal0: View {
                 
                 change.toggle()
                 timerCount += 1
-                
+                if voicecount == 0{
+                    siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+                    siri_naration1.rate = 0.4
+                    siri_naration1.pitchMultiplier = 1
+                    siri_naration1.volume = 50.0
+                    speech.speak(siri_naration1)
+                    voicecount += 1
+                }
                 if sceneNumber == 1 && timerCount%2 == 1 {
                     ypos -= 10
                 }
@@ -99,15 +110,15 @@ struct Scenepersonal0: View {
                     if xpos > 0 {
                         xpos -= 10
                         ypos -= 5
-                        if !dkdkdkdk && countdk == 1{
-                            dkdkdkdk.toggle()
-                            countdk += 1
+                        if !audio_scene_bool && audio_scene_count == 1{
+                            audio_scene_bool.toggle()
+                            audio_scene_count += 1
                         }
-                        if dkdkdkdk && countdk == 2{
+                        if audio_scene_bool && audio_scene_count == 2{
                             self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: lilyufo!))
                             audioPlayer?.play()
                         }
-                        dkdkdkdk = false
+                        audio_scene_bool = false
                         ufo_xpos -= 10
                         ufo_ypos -= 5
                         //UFO 포물선 날아가는거 나중에 작업
@@ -131,7 +142,7 @@ struct Scenepersonal0: View {
 
 struct Scenepersonal0_Previews: PreviewProvider {
     static var previews: some View {
-        Scenepersonal0()
+        ScenepersonalLily()
             .previewInterfaceOrientation(.landscapeRight)
     }
 }

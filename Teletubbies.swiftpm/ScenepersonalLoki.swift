@@ -8,7 +8,10 @@ import SwiftUI
 import AVFoundation
 import AVKit
 
-struct Scenepersonal3: View {
+struct ScenepersonalLoki: View {
+    let speech = AVSpeechSynthesizer()
+    let siri_naration1 = AVSpeechUtterance(string: "굶주린 노란 용사 로키는 취뽀 무지개를 찾고 있었어요. 릴리와 수는 튀김 소보로로 로키를 꾀어 함께 하자고 말해요. 이거 줄테니까 우리랑 같이 갈래?. 로키는 홀린 듯 우주선에 올라타요.")
+    @State var voicecount = 0
     @State var sceneNumber = 1
     @State var updown = false
     @State var audioPlayer:AVAudioPlayer!
@@ -26,8 +29,8 @@ struct Scenepersonal3: View {
     @State var countss = 1
     @State var ufo_xpos = 430
     @State var ufo_ypos = 50
-    @State var countdk = 1
-    @State var dkdkdkdk: Bool = false
+    @State var audio_scene_count = 1
+    @State var audio_scene_bool: Bool = false
     let syynthesizer = AVSpeechSynthesizer()
     
     var body: some View {
@@ -38,11 +41,11 @@ struct Scenepersonal3: View {
                 
                 if sceneNumber == 1 {
                     if change {
-                        Image("nd1").resizable().frame(width:120, height:132)
+                        Image("loki1").resizable().frame(width:120, height:132)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     }
                     else {
-                        Image("nd2").resizable().frame(width:120, height:132)
+                        Image("loki2").resizable().frame(width:120, height:132)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     }
                 }
@@ -51,7 +54,7 @@ struct Scenepersonal3: View {
                         .frame(width: 250, height: 150)
                         .position(x: CGFloat(430), y: CGFloat(80))
                         .zIndex(1)
-                    Image("nd1").resizable().frame(width:120, height:132)
+                    Image("loki1").resizable().frame(width:120, height:132)
                         .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     Rectangle()
                         .frame(width: CGFloat(rec_xsize), height: CGFloat(rec_ysize))
@@ -71,6 +74,15 @@ struct Scenepersonal3: View {
             }.onReceive(timer, perform: { value in
                 currentDate = value
                 change.toggle()
+                if voicecount == 0{
+                    
+                    siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+                    siri_naration1.rate = 0.4
+                    siri_naration1.pitchMultiplier = 1
+                    siri_naration1.volume = 50.0
+                    speech.speak(siri_naration1)
+                    voicecount += 1
+                }
                 if countss == 1{
                     countss += 1
                 }
@@ -102,15 +114,15 @@ struct Scenepersonal3: View {
                         rec_ysize -= 20
                         rec_ypos -= 10
                         ypos -= 20
-                        if !dkdkdkdk && countdk == 1{
-                            dkdkdkdk.toggle()
-                            countdk += 1
+                        if !audio_scene_bool && audio_scene_count == 1{
+                            audio_scene_bool.toggle()
+                            audio_scene_count += 1
                         }
-                        if dkdkdkdk && countdk == 2{
+                        if audio_scene_bool && audio_scene_count == 2{
                             self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: takeoff!))
                             audioPlayer?.play()
                         }
-                        dkdkdkdk = false
+                        audio_scene_bool = false
                         if rec_ysize == 0 {
                             sceneNumber += 1
                             up_down += 1
@@ -134,9 +146,9 @@ struct Scenepersonal3: View {
     }
 }
 
-struct Scenepersonal3_Previews: PreviewProvider {
+struct Scenepersonal4_Previews: PreviewProvider {
     static var previews: some View {
-        Scenepersonal3()
+        ScenepersonalLoki()
             .previewInterfaceOrientation(.landscapeRight)
     }
 }

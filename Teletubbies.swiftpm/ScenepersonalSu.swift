@@ -8,7 +8,10 @@ import SwiftUI
 import AVFoundation
 import AVKit
 
-struct Scenepersonal4: View {
+struct ScenepersonalSu: View {
+    let speech = AVSpeechSynthesizer()
+    let siri_naration1 = AVSpeechUtterance(string: "어?---------- 저기 해맑게 웃고있는 주황색 용사 수가 보이네요. 수는 오랫동안 낭만 무지개를 쫓아왔어요. “내가 이 여정에 낭만을 더해줄게!. 수는 반갑게 무지개 탐사선에 탑승합니다.")
+    @State var voicecount = 0
     @State var sceneNumber = 1
     @State var updown = false
     @State var audioPlayer:AVAudioPlayer!
@@ -26,9 +29,9 @@ struct Scenepersonal4: View {
     @State var countss = 1
     @State var ufo_xpos = 430
     @State var ufo_ypos = 50
-    @State var countdk = 1
-    @State var dkdkdkdk: Bool = false
-    let syynthesizer = AVSpeechSynthesizer()
+    @State var audio_scene_count = 1
+    @State var audio_scene_bool: Bool = false
+    
     
     var body: some View {
         ZStack {
@@ -38,11 +41,11 @@ struct Scenepersonal4: View {
                 
                 if sceneNumber == 1 {
                     if change {
-                        Image("loki1").resizable().frame(width:120, height:132)
+                        Image("su1").resizable().frame(width:120, height:132)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     }
                     else {
-                        Image("loki2").resizable().frame(width:120, height:132)
+                        Image("su2").resizable().frame(width:120, height:132)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     }
                 }
@@ -51,14 +54,14 @@ struct Scenepersonal4: View {
                         .frame(width: 250, height: 150)
                         .position(x: CGFloat(430), y: CGFloat(80))
                         .zIndex(1)
-                    Image("loki1").resizable().frame(width:120, height:132)
+                    Image("su1").resizable().frame(width:120, height:132)
                         .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     Rectangle()
                         .frame(width: CGFloat(rec_xsize), height: CGFloat(rec_ysize))
                         .position(x: CGFloat(430), y: CGFloat(rec_ypos))
                         .foregroundColor(.yellow)
                         .opacity(0.5)
-                        .animation(.linear(duration: 2.5), value: rec_ysize)
+                        .animation(.linear(duration: 0.5), value: rec_ysize)
                 }
                 else if sceneNumber == 3{
                     Image("ufo").resizable()
@@ -71,6 +74,15 @@ struct Scenepersonal4: View {
             }.onReceive(timer, perform: { value in
                 currentDate = value
                 change.toggle()
+                if voicecount == 0{
+                    
+                    siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+                    siri_naration1.rate = 0.4
+                    siri_naration1.pitchMultiplier = 1
+                    siri_naration1.volume = 50.0
+                    speech.speak(siri_naration1)
+                    voicecount += 1
+                }
                 if countss == 1{
                     countss += 1
                 }
@@ -102,15 +114,15 @@ struct Scenepersonal4: View {
                         rec_ysize -= 20
                         rec_ypos -= 10
                         ypos -= 20
-                        if !dkdkdkdk && countdk == 1{
-                            dkdkdkdk.toggle()
-                            countdk += 1
+                        if !audio_scene_bool && audio_scene_count == 1{
+                            audio_scene_bool.toggle()
+                            audio_scene_count += 1
                         }
-                        if dkdkdkdk && countdk == 2{
+                        if audio_scene_bool && audio_scene_count == 2{
                             self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: takeoff!))
                             audioPlayer?.play()
                         }
-                        dkdkdkdk = false
+                        audio_scene_bool = false
                         if rec_ysize == 0 {
                             sceneNumber += 1
                             up_down += 1
@@ -134,9 +146,9 @@ struct Scenepersonal4: View {
     }
 }
 
-struct Scenepersonal4_Previews: PreviewProvider {
+struct Scenepersonal2_Previews: PreviewProvider {
     static var previews: some View {
-        Scenepersonal4()
+        ScenepersonalSu()
             .previewInterfaceOrientation(.landscapeRight)
     }
 }

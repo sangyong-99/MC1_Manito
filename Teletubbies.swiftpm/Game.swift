@@ -38,8 +38,8 @@ struct Game: View {
     @State var attackSceneDuration = 0
     
     
-    @State var countdk = 1
-    @State var dkdkdkdk: Bool = false
+    @State var audio_scene_count = 1
+    @State var audio_scene_bool: Bool = false
     
     
     
@@ -280,15 +280,15 @@ struct Game: View {
                     monsterOpacity = 0
                     sceneChangeCount += 1
                     //소리 나는 코드
-                    if !dkdkdkdk && countdk == 9{
-                        dkdkdkdk.toggle()
-                        countdk += 1
+                    if !audio_scene_bool && audio_scene_count == 9{
+                        audio_scene_bool.toggle()
+                        audio_scene_count += 1
                     }
-                    if dkdkdkdk && countdk == 10{
+                    if audio_scene_bool && audio_scene_count == 10{
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: monsterdie!))
                         audioPlayer?.play()
                     }
-                    dkdkdkdk = false
+                    audio_scene_bool = false
                     
                     if sceneChangeCount > 5 {
                         sceneNumber = 13
@@ -302,15 +302,15 @@ struct Game: View {
                     prefixSum += 1
                     attack_xpos -= prefixSum
                     //소리나는 코드
-                    if !dkdkdkdk && countdk == 1{
-                        dkdkdkdk.toggle()
-                        countdk += 1
+                    if !audio_scene_bool && audio_scene_count == 1{
+                        audio_scene_bool.toggle()
+                        audio_scene_count += 1
                     }
-                    if dkdkdkdk && countdk == 2{
+                    if audio_scene_bool && audio_scene_count == 2{
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: attack!))
                         audioPlayer?.play()
                     }
-                    dkdkdkdk = false
+                    audio_scene_bool = false
                     
                     if attack_xpos < 200 {
                         sceneNumber = 3
@@ -321,15 +321,15 @@ struct Game: View {
                     prefixSum += 1
                     color_attack_xpos += prefixSum
                     //소리 나는 코드
-                    if !dkdkdkdk && countdk == 3{
-                        dkdkdkdk.toggle()
-                        countdk += 1
+                    if !audio_scene_bool && audio_scene_count == 3{
+                        audio_scene_bool.toggle()
+                        audio_scene_count += 1
                     }
-                    if dkdkdkdk && countdk == 4{
+                    if audio_scene_bool && audio_scene_count == 4{
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: attack!))
                         audioPlayer?.play()
                     }
-                    dkdkdkdk = false
+                    audio_scene_bool = false
                     
                     if color_attack_xpos > 500 {
                         sceneNumber = 6
@@ -340,15 +340,15 @@ struct Game: View {
                     prefixSum += 1
                     attack_xpos -= prefixSum
                     //소리 나는 코드
-                    if !dkdkdkdk && countdk == 5{
-                        dkdkdkdk.toggle()
-                        countdk += 1
+                    if !audio_scene_bool && audio_scene_count == 5{
+                        audio_scene_bool.toggle()
+                        audio_scene_count += 1
                     }
-                    if dkdkdkdk && countdk == 6{
+                    if audio_scene_bool && audio_scene_count == 6{
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: attack!))
                         audioPlayer?.play()
                     }
-                    dkdkdkdk = false
+                    audio_scene_bool = false
                     if attack_xpos < 200 {
                         sceneNumber = 9
                         prefixSum = 0
@@ -357,15 +357,15 @@ struct Game: View {
                 else if sceneNumber == 11 {
                     prefixSum += 1
                     //소리 나는 코드
-                    if !dkdkdkdk && countdk == 7{
-                        dkdkdkdk.toggle()
-                        countdk += 1
+                    if !audio_scene_bool && audio_scene_count == 7{
+                        audio_scene_bool.toggle()
+                        audio_scene_count += 1
                     }
-                    if dkdkdkdk && countdk == 8{
+                    if audio_scene_bool && audio_scene_count == 8{
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: rainbowattack!))
                         audioPlayer?.play()
                     }
-                    dkdkdkdk = false
+                    audio_scene_bool = false
                     
                     color_attack_xpos += prefixSum
                     if color_attack_xpos > 500 {
@@ -377,15 +377,15 @@ struct Game: View {
                 if sceneNumber == 3 {
                     attackSceneDuration += 1
                     //소리 나는 코드
-                    if !dkdkdkdk && countdk == 2{
-                        dkdkdkdk.toggle()
-                        countdk += 1
+                    if !audio_scene_bool && audio_scene_count == 2{
+                        audio_scene_bool.toggle()
+                        audio_scene_count += 1
                     }
-                    if dkdkdkdk && countdk == 3{
+                    if audio_scene_bool && audio_scene_count == 3{
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: telehit!))
                         audioPlayer?.play()
                     }
-                    dkdkdkdk = false
+                    audio_scene_bool = false
                     
                     if attackSceneDuration > 3 {
                         attack_xpos = 500
@@ -397,15 +397,15 @@ struct Game: View {
                 else if sceneNumber == 6 {
                     attackSceneDuration += 1
                     //소리 나는 코드
-                    if !dkdkdkdk && countdk == 4{
-                        dkdkdkdk.toggle()
-                        countdk += 1
+                    if !audio_scene_bool && audio_scene_count == 4{
+                        audio_scene_bool.toggle()
+                        audio_scene_count += 1
                     }
-                    if dkdkdkdk && countdk == 5{
+                    if audio_scene_bool && audio_scene_count == 5{
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: monsterhit!))
                         audioPlayer?.play()
                     }
-                    dkdkdkdk = false
+                    audio_scene_bool = false
                     
                     if attackSceneDuration > 3 {
                         color_attack_xpos = 200
@@ -417,15 +417,15 @@ struct Game: View {
                 else if sceneNumber == 9 {
                     attackSceneDuration += 1
                     //소리 나는 코드
-                    if !dkdkdkdk && countdk == 6{
-                        dkdkdkdk.toggle()
-                        countdk += 1
+                    if !audio_scene_bool && audio_scene_count == 6{
+                        audio_scene_bool.toggle()
+                        audio_scene_count += 1
                     }
-                    if dkdkdkdk && countdk == 7{
+                    if audio_scene_bool && audio_scene_count == 7{
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: telehit!))
                         audioPlayer?.play()
                     }
-                    dkdkdkdk = false
+                    audio_scene_bool = false
                     
                     if attackSceneDuration > 3 {
                         attack_xpos = 500
@@ -437,15 +437,15 @@ struct Game: View {
                 else if sceneNumber == 12 {
                     attackSceneDuration += 1
                     //소리 나는 코드
-                    if !dkdkdkdk && countdk == 8{
-                        dkdkdkdk.toggle()
-                        countdk += 1
+                    if !audio_scene_bool && audio_scene_count == 8{
+                        audio_scene_bool.toggle()
+                        audio_scene_count += 1
                     }
-                    if dkdkdkdk && countdk == 9{
+                    if audio_scene_bool && audio_scene_count == 9{
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: monsterhit!))
                         audioPlayer?.play()
                     }
-                    dkdkdkdk = false
+                    audio_scene_bool = false
                     
                     if attackSceneDuration > 3 {
                         color_attack_xpos = 200

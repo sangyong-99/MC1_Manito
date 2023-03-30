@@ -7,6 +7,7 @@ struct ContentView: View {
     @State var pageNumber = 0
     @State var startpagebool: Bool = true
     @State var audioPlayer:AVAudioPlayer!
+    let start00 = Bundle.main.path(forResource: "start00", ofType: "mp3")
     let sound1 = Bundle.main.path(forResource: "BGM_Start", ofType: "mp3")
     let sound2 = Bundle.main.path(forResource: "sound2", ofType: "mp3")
     let sound3 = Bundle.main.path(forResource: "Rainbow", ofType: "mp3")
@@ -16,35 +17,43 @@ struct ContentView: View {
         NavigationView{
             VStack{
                 if pageNumber == 0 {
-                    Start0()
+                    Start0().onAppear(){
+                        self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: start00!))
+                        audioPlayer?.setVolume(0.3, fadeDuration: 1)
+                        audioPlayer?.play()
+                        
+                    }
                 }
                 else if pageNumber == 1 {
                     Start().onAppear(){
+                        audioPlayer?.stop()
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound1!))
+                        audioPlayer?.setVolume(0.25, fadeDuration: 1)
                         audioPlayer?.play()
                     }
                 }
                 else if pageNumber == 2 {
-                    Scenepersonal0().onAppear(){
+                    ScenepersonalLily().onAppear(){
                         audioPlayer?.stop()
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
+                        audioPlayer?.setVolume(0.25, fadeDuration: 1)
                         audioPlayer?.play()
                     }
                 }
                 else if pageNumber == 3 {
-                    Scenepersonal2()
+                    ScenepersonalSu()
                 }
                 else if pageNumber == 4 {
-                    Scenepersonal4()
+                    ScenepersonalLoki()
                 }
                 else if pageNumber == 5 {
-                    Scenepersonal3()
+                    ScenepersonalNd()
                 }
                 else if pageNumber == 6 {
-                    Scenepersonal5()
+                    ScenepersonalWesley()
                 }
                 else if pageNumber == 7 {
-                    Scenepersonal1()
+                    ScenepersonalGenie()
                 }
                 else if pageNumber == 8 {
                     PreviousGame()
@@ -54,6 +63,7 @@ struct ContentView: View {
                     MonsterAppear().onAppear(){
                         audioPlayer?.stop()
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: monsterappear!))
+                        audioPlayer?.setVolume(0.35, fadeDuration: 1)
                         audioPlayer?.play()
                                 
                     }

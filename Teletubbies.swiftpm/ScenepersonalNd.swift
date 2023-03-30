@@ -8,7 +8,10 @@ import SwiftUI
 import AVFoundation
 import AVKit
 
-struct Scenepersonal5: View {
+struct ScenepersonalNd: View {
+    let speech = AVSpeechSynthesizer()
+    let siri_naration1 = AVSpeechUtterance(string: "흥겹게 춤을 추고 있는 초록의 용사는 엔디예요. 엔디가 찾는 건 도전 무지개에요. 탐사선을 본 엔디는 새로운 도전을 찾았다!  힘차게 외치며 탐사선에 탑승해요.")
+    @State var voicecount = 0
     @State var sceneNumber = 1
     @State var updown = false
     @State var audioPlayer:AVAudioPlayer!
@@ -26,9 +29,8 @@ struct Scenepersonal5: View {
     @State var countss = 1
     @State var ufo_xpos = 430
     @State var ufo_ypos = 50
-    @State var countdk = 1
-    @State var dkdkdkdk: Bool = false
-    let syynthesizer = AVSpeechSynthesizer()
+    @State var audio_scene_count = 1
+    @State var audio_scene_bool: Bool = false
     
     var body: some View {
         ZStack {
@@ -38,11 +40,11 @@ struct Scenepersonal5: View {
                 
                 if sceneNumber == 1 {
                     if change {
-                        Image("wesley1").resizable().frame(width:120, height:132)
+                        Image("nd1").resizable().frame(width:120, height:132)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     }
                     else {
-                        Image("wesley2").resizable().frame(width:120, height:132)
+                        Image("nd2").resizable().frame(width:120, height:132)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     }
                 }
@@ -51,7 +53,7 @@ struct Scenepersonal5: View {
                         .frame(width: 250, height: 150)
                         .position(x: CGFloat(430), y: CGFloat(80))
                         .zIndex(1)
-                    Image("wesley1").resizable().frame(width:120, height:132)
+                    Image("nd1").resizable().frame(width:120, height:132)
                         .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     Rectangle()
                         .frame(width: CGFloat(rec_xsize), height: CGFloat(rec_ysize))
@@ -71,6 +73,15 @@ struct Scenepersonal5: View {
             }.onReceive(timer, perform: { value in
                 currentDate = value
                 change.toggle()
+                if voicecount == 0{
+                    
+                    siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+                    siri_naration1.rate = 0.4
+                    siri_naration1.pitchMultiplier = 1
+                    siri_naration1.volume = 50.0
+                    speech.speak(siri_naration1)
+                    voicecount += 1
+                }
                 if countss == 1{
                     countss += 1
                 }
@@ -102,15 +113,15 @@ struct Scenepersonal5: View {
                         rec_ysize -= 20
                         rec_ypos -= 10
                         ypos -= 20
-                        if !dkdkdkdk && countdk == 1{
-                            dkdkdkdk.toggle()
-                            countdk += 1
+                        if !audio_scene_bool && audio_scene_count == 1{
+                            audio_scene_bool.toggle()
+                            audio_scene_count += 1
                         }
-                        if dkdkdkdk && countdk == 2{
+                        if audio_scene_bool && audio_scene_count == 2{
                             self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: takeoff!))
                             audioPlayer?.play()
                         }
-                        dkdkdkdk = false
+                        audio_scene_bool = false
                         if rec_ysize == 0 {
                             sceneNumber += 1
                             up_down += 1
@@ -134,9 +145,9 @@ struct Scenepersonal5: View {
     }
 }
 
-struct Scenepersonal5_Previews: PreviewProvider {
+struct Scenepersonal3_Previews: PreviewProvider {
     static var previews: some View {
-        Scenepersonal5()
+        ScenepersonalNd()
             .previewInterfaceOrientation(.landscapeRight)
     }
 }
