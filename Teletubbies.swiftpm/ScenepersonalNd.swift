@@ -46,7 +46,7 @@ struct ScenepersonalNd: View {
                     }
                 }
                 else if sceneNumber == 2 {
-                    Image("ufo").resizable()
+                    Image("ufo_three").resizable()
                         .frame(width: 250, height: 150)
                         .position(x: CGFloat(430), y: CGFloat(80))
                         .zIndex(1)
@@ -60,7 +60,7 @@ struct ScenepersonalNd: View {
                         .animation(.linear(duration: 2.5), value: rec_ysize)
                 }
                 else if sceneNumber == 3{
-                    Image("ufo").resizable()
+                    Image("ufo_four").resizable()
                         .frame(width: 250, height: 150)
                         .position(x: CGFloat(ufo_xpos), y: CGFloat(ufo_ypos))
                 }
