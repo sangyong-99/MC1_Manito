@@ -60,7 +60,7 @@ struct ScenepersonalSu: View {
                         .animation(.linear(duration: 0.5), value: rec_ysize)
                 }
                 else if sceneNumber == 3{
-                    Image("ufo").resizable()
+                    Image("ufo_two").resizable()
                         .frame(width: 250, height: 150)
                         .position(x: CGFloat(ufo_xpos), y: CGFloat(ufo_ypos))
                     

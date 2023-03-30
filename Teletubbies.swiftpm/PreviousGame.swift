@@ -22,19 +22,19 @@ struct PreviousGame: View {
     @State var six_xsize = 0
     @State var six_ysize:Double = 0
     @State var six_xpos = 430
-    @State var six_ypos = 0
+    @State var six_ypos = 20
     @State var scenecount = 0
     
     var body: some View {
         ZStack{
             ZStack{
                 if sceneNumber == 1{
-                    Image("ufo").resizable()
+                    Image("ufo_six").resizable()
                         .frame(width: 250, height: 150)
                         .position(x: CGFloat(430), y: CGFloat(ufo_ypos))
                 }
                 else if sceneNumber == 2{
-                    Image("ufo").resizable().zIndex(1)
+                    Image("ufo_1").resizable().zIndex(1)
                         .frame(width: 250, height: 150)
                         .position(x: CGFloat(430), y: CGFloat(80))
                     Image("sixpeople").resizable()
