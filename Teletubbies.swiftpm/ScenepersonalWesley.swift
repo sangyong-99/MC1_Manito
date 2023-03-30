@@ -26,7 +26,7 @@ struct ScenepersonalWesley: View {
     @State var rec_xsize = 130
     @State var rec_ysize = 0
     @State var rec_ypos = 100
-    @State var countss = 1
+    @State var scenecount = 1
     @State var ufo_xpos = 430
     @State var ufo_ypos = 50
     @State var audio_scene_count = 1
@@ -75,17 +75,17 @@ struct ScenepersonalWesley: View {
                     speech.speak(siri_naration1)
                     voicecount += 1
                 }
-                if countss == 1{
-                    countss += 1
+                if scenecount == 1{
+                    scenecount += 1
                 }
-                else if countss < 6{
+                else if scenecount < 6{
                     if change {
                         ypos -= 20
                     }
                     else {
                         ypos += 20
                     }
-                    countss += 1
+                    scenecount += 1
                 }
                 else {
                     sceneNumber += 1
@@ -94,7 +94,7 @@ struct ScenepersonalWesley: View {
             })
             .onReceive(timerss, perform: {value in
                 currentDate = value
-                if countss == 6{
+                if scenecount == 6{
                     if up_down == 1 {
                         rec_ysize += 20
                         rec_ypos += 10
