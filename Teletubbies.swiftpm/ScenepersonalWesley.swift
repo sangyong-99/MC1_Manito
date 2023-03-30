@@ -8,9 +8,9 @@ import SwiftUI
 import AVFoundation
 import AVKit
 
-struct Scenepersonal4: View {
+struct ScenepersonalWesley: View {
     let speech = AVSpeechSynthesizer()
-    let siri_naration1 = AVSpeechUtterance(string: "굶주린 노란 용사 로키는 취뽀 무지개를 찾고 있었어요. 릴리와 수는 튀김 소보로로 로키를 꾀어 함께 하자고 말해요. 이거 줄테니까 우리랑 같이 갈래?. 로키는 홀린 듯 우주선에 올라타요.")
+    let siri_naration1 = AVSpeechUtterance(string: "파란색 용사 웨슬리가 보이네요! 똘망똘망한 웨슬리는 탐사선을 먼저 발견하고 반갑게 소리쳐요. 나는 성장 무지개를 찾고있어! 나도 함께 가자!")
     @State var voicecount = 0
     @State var sceneNumber = 1
     @State var updown = false
@@ -29,8 +29,8 @@ struct Scenepersonal4: View {
     @State var countss = 1
     @State var ufo_xpos = 430
     @State var ufo_ypos = 50
-    @State var countdk = 1
-    @State var dkdkdkdk: Bool = false
+    @State var audio_scene_count = 1
+    @State var audio_scene_bool: Bool = false
     let syynthesizer = AVSpeechSynthesizer()
     
     var body: some View {
@@ -41,11 +41,11 @@ struct Scenepersonal4: View {
                 
                 if sceneNumber == 1 {
                     if change {
-                        Image("loki1").resizable().frame(width:120, height:132)
+                        Image("wesley1").resizable().frame(width:120, height:132)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     }
                     else {
-                        Image("loki2").resizable().frame(width:120, height:132)
+                        Image("wesley2").resizable().frame(width:120, height:132)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     }
                 }
@@ -54,7 +54,7 @@ struct Scenepersonal4: View {
                         .frame(width: 250, height: 150)
                         .position(x: CGFloat(430), y: CGFloat(80))
                         .zIndex(1)
-                    Image("loki1").resizable().frame(width:120, height:132)
+                    Image("wesley1").resizable().frame(width:120, height:132)
                         .position(x: CGFloat(xpos), y: CGFloat(ypos))
                     Rectangle()
                         .frame(width: CGFloat(rec_xsize), height: CGFloat(rec_ysize))
@@ -75,9 +75,8 @@ struct Scenepersonal4: View {
                 currentDate = value
                 change.toggle()
                 if voicecount == 0{
-                    
                     siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
-                    siri_naration1.rate = 0.45
+                    siri_naration1.rate = 0.4
                     siri_naration1.pitchMultiplier = 1
                     siri_naration1.volume = 50.0
                     speech.speak(siri_naration1)
@@ -114,15 +113,15 @@ struct Scenepersonal4: View {
                         rec_ysize -= 20
                         rec_ypos -= 10
                         ypos -= 20
-                        if !dkdkdkdk && countdk == 1{
-                            dkdkdkdk.toggle()
-                            countdk += 1
+                        if !audio_scene_bool && audio_scene_count == 1{
+                            audio_scene_bool.toggle()
+                            audio_scene_count += 1
                         }
-                        if dkdkdkdk && countdk == 2{
+                        if audio_scene_bool && audio_scene_count == 2{
                             self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: takeoff!))
                             audioPlayer?.play()
                         }
-                        dkdkdkdk = false
+                        audio_scene_bool = false
                         if rec_ysize == 0 {
                             sceneNumber += 1
                             up_down += 1
@@ -146,9 +145,9 @@ struct Scenepersonal4: View {
     }
 }
 
-struct Scenepersonal4_Previews: PreviewProvider {
+struct Scenepersonal5_Previews: PreviewProvider {
     static var previews: some View {
-        Scenepersonal4()
+        ScenepersonalWesley()
             .previewInterfaceOrientation(.landscapeRight)
     }
 }

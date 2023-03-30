@@ -15,7 +15,7 @@ struct Start: View {
     @State private var isNextViewPresented = false
     @State var sceneNumber = 1
     @State var voicecount = 0
-    @State var dkdk: Double = 0
+    @State var sun_opacity: Double = 0
     @State var currentDate: Date = Date()
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @State var sun_xpos = 160
@@ -34,7 +34,7 @@ struct Start: View {
                         .position(x: CGFloat(sun_xpos), y: CGFloat(sun_ypos))
                     Image("bababack").resizable().frame(width: 250, height: 150)
                         .position(x: CGFloat(670), y: CGFloat(120))
-                        .opacity(dkdk)
+                        .opacity(sun_opacity)
                 }
             }.onReceive(timer, perform: { value in
                 currentDate = value
@@ -47,7 +47,7 @@ struct Start: View {
                     }
                 }
                 if sceneNumber == 2{
-                    dkdk += 0.1
+                    sun_opacity += 0.1
                     if voicecount == 0{
                         siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
                         siri_naration1.rate = 0.45

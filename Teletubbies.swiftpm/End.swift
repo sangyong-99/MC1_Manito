@@ -11,7 +11,7 @@ import AVKit
 
 struct End: View {
     let speech = AVSpeechSynthesizer()
-    let siri_naration1 = AVSpeechUtterance(string:"무지개 ------------------- 빔을 맞은 몬스터는 결국 쓰러지고.애플 동산 하늘엔 몬스터가 삼켰던 색들로 이루어진 큰 무지개가 뜹니다. 여섯 용사들은 무지개 아래에서 꺄르륵 꺄르륵 행복해해요.")
+    let siri_naration1 = AVSpeechUtterance(string:"무지개 -- 빔을 맞은 몬스터는 결국 쓰러지고.애플 동산 하늘엔 몬스터가 삼켰던 색들로 이루어진 큰 무지개가 뜹니다. 여섯 용사들은 무지개 아래에서 꺄르륵 꺄르륵 행복해해요.")
     @State var voicecount = 0
     @State var audioPlayer:AVAudioPlayer!
     @State var sceneNumber = 1
@@ -27,8 +27,8 @@ struct End: View {
     @State var attack_ypos = 250
     @State var color_attack_xpos = 200
     @State var color_attack_ypos = 250
-    @State var countdk = 1
-    @State var dkdkdkdk: Bool = false
+    @State var audio_scene_count = 1
+    @State var audio_scene_bool: Bool = false
     @State var rainbow_opacity = false
     
     var body: some View {
@@ -65,15 +65,16 @@ struct End: View {
                 timerCount += 1
                 if timerCount > 3 {
                     rainbow_opacity = true
-                    if !dkdkdkdk && countdk == 1{
-                        dkdkdkdk.toggle()
-                        countdk += 1
+                    if !audio_scene_bool && audio_scene_count == 1{
+                        audio_scene_bool.toggle()
+                        audio_scene_count += 1
                     }
-                    if dkdkdkdk && countdk == 2{
+                    if audio_scene_bool && audio_scene_count == 2{
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: laugh!))
+                        audioPlayer?.setVolume(0.35, fadeDuration: 1)
                         audioPlayer?.play()
                     }
-                    dkdkdkdk = false
+                    audio_scene_bool = false
                     
                 }
                 rotation += 20

@@ -33,7 +33,7 @@ struct ContentView: View {
                     }
                 }
                 else if pageNumber == 2 {
-                    Scenepersonal0().onAppear(){
+                    ScenepersonalLily().onAppear(){
                         audioPlayer?.stop()
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
                         audioPlayer?.setVolume(0.25, fadeDuration: 1)
@@ -41,19 +41,19 @@ struct ContentView: View {
                     }
                 }
                 else if pageNumber == 3 {
-                    Scenepersonal2()
+                    ScenepersonalSu()
                 }
                 else if pageNumber == 4 {
-                    Scenepersonal4()
+                    ScenepersonalLoki()
                 }
                 else if pageNumber == 5 {
-                    Scenepersonal3()
+                    ScenepersonalNd()
                 }
                 else if pageNumber == 6 {
-                    Scenepersonal5()
+                    ScenepersonalWesley()
                 }
                 else if pageNumber == 7 {
-                    Scenepersonal1()
+                    ScenepersonalGenie()
                 }
                 else if pageNumber == 8 {
                     PreviousGame()
