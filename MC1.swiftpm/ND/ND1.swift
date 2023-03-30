@@ -47,7 +47,6 @@ struct ND1: View {
                     currentDate = value
                     change.toggle()
                     if xpos == 0{
-                        
                         let aa = AVSpeechUtterance(string: "안녕하세요 저는 아아아아아아")
                         aa.voice = AVSpeechSynthesisVoice(language: "ko-KR")
                         aa.rate = 0.5
