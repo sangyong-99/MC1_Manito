@@ -15,7 +15,7 @@ struct Game: View {
     let siri_naration3 = AVSpeechUtterance(string: "재미와 낭만을 뺴앗긴 용사들은 사과 폭탄을 꺼내 공격해요.")
     let siri_naration4 = AVSpeechUtterance(string: "주춤하던 몬스터. 그러나 나머지 모두의 색까지 빼앗아버려요!")
     let siri_naration5 = AVSpeechUtterance(string: "용사들은 힘을 합칠 때라는 걸 깨달아요. 우리의 색을 다 같이 한번 모아보자!")
-    let siri_naration6 = AVSpeechUtterance(string: "무지개 빔을 맞은 몬스터는 결국 쓰러지고. 애플 동산 하늘엔 그가 삼켰던 색들로 이루어진 큰 무지개가 뜹니다.")
+    let siri_naration6 = AVSpeechUtterance(string: "모두의 힘을 합쳐 쏜 무지개 빔을 맞은 몬스터는 결국 쓰러지고 말았어요. ")
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     let milli_timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     let attack = Bundle.main.path(forResource: "Attack", ofType: "mp3")
@@ -270,6 +270,7 @@ struct Game: View {
                     }
                     if audio_scene_bool && audio_scene_count == 10{
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: monsterdie!))
+                        audioPlayer?.setVolume(0.3, fadeDuration: 1)
                         audioPlayer?.play()
                     }
                     audio_scene_bool = false
