@@ -9,6 +9,9 @@ import AVFoundation
 import AVKit
 
 struct Scenepersonal5: View {
+    let speech = AVSpeechSynthesizer()
+    let siri_naration1 = AVSpeechUtterance(string: "파란색 용사 웨슬리가 보이네요! 똘망똘망한 웨슬리는 탐사선을 먼저 발견하고 반갑게 소리쳐요. 나는 성장 무지개를 찾고있어! 나도 함께 가자!")
+    @State var voicecount = 0
     @State var sceneNumber = 1
     @State var updown = false
     @State var audioPlayer:AVAudioPlayer!
@@ -71,6 +74,15 @@ struct Scenepersonal5: View {
             }.onReceive(timer, perform: { value in
                 currentDate = value
                 change.toggle()
+                if voicecount == 0{
+                    
+                    siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+                    siri_naration1.rate = 0.45
+                    siri_naration1.pitchMultiplier = 1
+                    siri_naration1.volume = 50.0
+                    speech.speak(siri_naration1)
+                    voicecount += 1
+                }
                 if countss == 1{
                     countss += 1
                 }

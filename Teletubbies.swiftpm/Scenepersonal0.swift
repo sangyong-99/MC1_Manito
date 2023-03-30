@@ -10,6 +10,9 @@ import AVFoundation
 import AVKit
 
 struct Scenepersonal0: View {
+    let speech = AVSpeechSynthesizer()
+    let siri_naration1 = AVSpeechUtterance(string: "드넓은 동산에서 가장 먼저 보이는 건 빨간색 용사 릴리예요.-- 언제나 즐거운 릴리는 애플 동산에서 더 큰 '재미 무지개'를 찾고 싶어해요. 그래서 무지개 탐사선에 첫 번째로 올라탑니다.")
+    @State var voicecount = 0
     @State var sceneNumber = 1
     @State var timerCount = 0
     @State var audioPlayer:AVAudioPlayer!
@@ -19,8 +22,8 @@ struct Scenepersonal0: View {
     
     @State var currentDate: Date = Date()
     @State var change: Bool = true
-    @State var countdk = 1
-    @State var dkdkdkdk: Bool = false
+    @State var countdk = 1  //scene if 넘어가는 인트
+    @State var dkdkdkdk: Bool = false   //scene if 넘어가는 불
     @State var xpos = 400
     @State var ypos = 240
     
@@ -38,6 +41,7 @@ struct Scenepersonal0: View {
             ZStack{
                 if sceneNumber == 1 { // 점프하면서 대사?
                     if change {
+                        
                         Image("Lily1").resizable().frame(width:100, height:150)
                             .position(x: CGFloat(xpos), y: CGFloat(ypos))
                         
@@ -70,7 +74,14 @@ struct Scenepersonal0: View {
                 
                 change.toggle()
                 timerCount += 1
-                
+                if voicecount == 0{
+                    siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+                    siri_naration1.rate = 0.35
+                    siri_naration1.pitchMultiplier = 1
+                    siri_naration1.volume = 50.0
+                    speech.speak(siri_naration1)
+                    voicecount += 1
+                }
                 if sceneNumber == 1 && timerCount%2 == 1 {
                     ypos -= 10
                 }

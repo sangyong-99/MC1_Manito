@@ -10,6 +10,9 @@ import AVFoundation
 import AVKit
 
 struct End: View {
+    let speech = AVSpeechSynthesizer()
+    let siri_naration1 = AVSpeechUtterance(string:"무지개 ------------------- 빔을 맞은 몬스터는 결국 쓰러지고.애플 동산 하늘엔 몬스터가 삼켰던 색들로 이루어진 큰 무지개가 뜹니다. 여섯 용사들은 무지개 아래에서 꺄르륵 꺄르륵 행복해해요.")
+    @State var voicecount = 0
     @State var audioPlayer:AVAudioPlayer!
     @State var sceneNumber = 1
     @State var timerCount = 0
@@ -48,8 +51,17 @@ struct End: View {
                 
             }.onReceive(timer, perform: { value in
                 currentDate = value
-                
                 change.toggle()
+                
+                if voicecount == 0{
+                    siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+                    siri_naration1.rate = 0.38
+                    siri_naration1.pitchMultiplier = 1
+                    siri_naration1.volume = 50.0
+                    speech.speak(siri_naration1)
+                    voicecount += 1
+                }
+                
                 timerCount += 1
                 if timerCount > 3 {
                     rainbow_opacity = true

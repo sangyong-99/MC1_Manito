@@ -9,6 +9,9 @@ import SwiftUI
 import AVFoundation
 import AVKit
 struct PreviousGame: View {
+    let speech = AVSpeechSynthesizer()
+    let siri_naration1 = AVSpeechUtterance(string: "여섯 용사들을 모두 태운 탐사선은 무지개 기운이 강하게 느껴지는 곳에 용사들을 데려다줍니다")
+    @State var voicecount = 0
     @State var audioPlayer:AVAudioPlayer!
     let landing = Bundle.main.path(forResource: "Landing", ofType: "mp3")
     let timer = Timer.publish(every: 0.25, on: .main, in: .common).autoconnect()
@@ -47,6 +50,14 @@ struct PreviousGame: View {
                     }
                 }
                 else if stop == 2{
+                    if voicecount == 0{
+                        siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+                        siri_naration1.rate = 0.45
+                        siri_naration1.pitchMultiplier = 1
+                        siri_naration1.volume = 50.0
+                        speech.speak(siri_naration1)
+                        voicecount += 1
+                    }
                     sceneNumber += 1
                     stop += 1
                     self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: landing!))

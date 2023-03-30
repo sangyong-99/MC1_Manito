@@ -19,13 +19,16 @@ struct ContentView: View {
                 if pageNumber == 0 {
                     Start0().onAppear(){
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: start00!))
+                        audioPlayer?.setVolume(0.3, fadeDuration: 1)
                         audioPlayer?.play()
+                        
                     }
                 }
                 else if pageNumber == 1 {
                     Start().onAppear(){
                         audioPlayer?.stop()
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound1!))
+                        audioPlayer?.setVolume(0.25, fadeDuration: 1)
                         audioPlayer?.play()
                     }
                 }
@@ -33,6 +36,7 @@ struct ContentView: View {
                     Scenepersonal0().onAppear(){
                         audioPlayer?.stop()
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound2!))
+                        audioPlayer?.setVolume(0.25, fadeDuration: 1)
                         audioPlayer?.play()
                     }
                 }
@@ -59,6 +63,7 @@ struct ContentView: View {
                     MonsterAppear().onAppear(){
                         audioPlayer?.stop()
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: monsterappear!))
+                        audioPlayer?.setVolume(0.35, fadeDuration: 1)
                         audioPlayer?.play()
                                 
                     }

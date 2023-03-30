@@ -8,9 +8,13 @@
 import SwiftUI
 import AVFoundation
 
+ 
 struct Start: View {
+    let speech = AVSpeechSynthesizer()
+    let siri_naration1 = AVSpeechUtterance(string: "넓고 푸른 애플 동산에는 각자 무지개를 찾고 있는 용사들이 살고있었어요.")
     @State private var isNextViewPresented = false
     @State var sceneNumber = 1
+    @State var voicecount = 0
     @State var dkdk: Double = 0
     @State var currentDate: Date = Date()
     let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
@@ -44,6 +48,14 @@ struct Start: View {
                 }
                 if sceneNumber == 2{
                     dkdk += 0.1
+                    if voicecount == 0{
+                        siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+                        siri_naration1.rate = 0.45
+                        siri_naration1.pitchMultiplier = 1
+                        siri_naration1.volume = 50.0
+                        speech.speak(siri_naration1)
+                        voicecount += 1
+                    }
                 }
                 
             })

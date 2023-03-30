@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct MonsterAppear: View {
+    let speech = AVSpeechSynthesizer()
+    let siri_naration1 = AVSpeechUtterance(string: "하지만 눈 앞에 나타난 건 무지개가 아니라 거대한 흑백의 챌린지 괴물이었어요! 흑백의 챌린지 괴물은 우리의 색을 빼앗는 무시무시한 괴물이에요.")
+    @State var voicecount = 0
     @State var timerCount = 0
     
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
@@ -45,6 +49,14 @@ struct MonsterAppear: View {
                 
                 
             }.onReceive(timer, perform: { value in
+                if voicecount == 0{
+                    siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+                    siri_naration1.rate = 0.35
+                    siri_naration1.pitchMultiplier = 1
+                    siri_naration1.volume = 50.0
+                    speech.speak(siri_naration1)
+                    voicecount += 1
+                }
                 if sceneNumber == 1 {
                     timerCount += 1
                     if timerCount > 5 {

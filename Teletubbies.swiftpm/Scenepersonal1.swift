@@ -9,7 +9,11 @@ import AVFoundation
 import AVKit
 
 struct Scenepersonal1: View {
+    let speech = AVSpeechSynthesizer()
+    let siri_naration1 = AVSpeechUtterance(string: "마지막으로 보라색 용사 지니가 보입니다. 일상에 단조로움을 느끼던 지니는 일탈 무지개를 찾고있었어요. 탐사선을 발견한 지니는 모험이다! 외치며 탐사선에 탑승합니다.")
+    @State var voicecount = 0
     @State var audioPlayer:AVAudioPlayer!
+    
     @State var sceneNumber = 1
     @State var updown = false
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
@@ -28,7 +32,8 @@ struct Scenepersonal1: View {
     @State var ufo_ypos = 50
     @State var countdk = 1
     @State var dkdkdkdk: Bool = false
-    let syynthesizer = AVSpeechSynthesizer()
+    
+    
     
     var body: some View {
         ZStack {
@@ -73,15 +78,30 @@ struct Scenepersonal1: View {
             .onReceive(timer, perform: { value in
                 currentDate = value
                 change.toggle()
+                
+                
+                
                 if countss == 1{
                     countss += 1
+                    
+                    if voicecount == 0{
+                        
+                        siri_naration1.voice = AVSpeechSynthesisVoice(language: "ko-KR")
+                        siri_naration1.rate = 0.45
+                        siri_naration1.pitchMultiplier = 1
+                        siri_naration1.volume = 50.0
+                        speech.speak(siri_naration1)
+                        voicecount += 1
+                    }
                 }
                 else if countss < 6{
                     if change {
                         ypos -= 20
+                        
                     }
                     else {
                         ypos += 20
+                        
                     }
                     countss += 1
                 }
