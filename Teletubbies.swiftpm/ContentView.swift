@@ -83,9 +83,13 @@ struct ContentView: View {
                         self.audioPlayer = try! AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound3!))
                         audioPlayer?.play()
                     }
-                    
                 }
-                
+                else if pageNumber == 13 {
+                    End2().onAppear(){
+                        audioPlayer?.stop()
+                        
+                    }
+                }
             }
             .toolbar{
                 ToolbarItemGroup(placement: .bottomBar){
