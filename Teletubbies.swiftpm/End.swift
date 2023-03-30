@@ -13,7 +13,7 @@ struct End: View {
     let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     let laugh = Bundle.main.path(forResource: "laugh", ofType: "mp3")
     let speech = AVSpeechSynthesizer()
-    let siri_naration1 = AVSpeechUtterance(string:"여섯 용사들은 무지개 아래에서 꺄르륵 꺄르륵 행복해해요.")
+    let siri_naration1 = AVSpeechUtterance(string:"애플 동산 하늘엔 그가 삼켰던 색들로 이루어진 큰 무지개가 뜹니다. 여섯 용사들은 무지개 아래에서 꺄르륵 꺄르륵 행복해해요.")
     @State var voicecount = 0
     @State var audioPlayer:AVAudioPlayer!
     @State var sceneNumber = 1
